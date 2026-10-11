@@ -1,0 +1,750 @@
+<title>Agentic Board Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: forest-green "boardroom" hero with a live board diagram, then alternating paper sections; each section is one working tool from the playbook. Palette and faces come from the source deck. */
+:root{
+  --bg:#F2F0ED; --surface:#FFFFFF; --sunk:#E8E4DF; --ink:#002313; --text:#1F2A25; --muted:#55615B; --line:#D6D0C9;
+  --forest:#002313; --forest-2:#0B3322; --on-forest:#F2F0ED; --on-forest-muted:#B9C7BF;
+  --mint:#4CDD84; --teal:#287079; --teal-text:#1F5F67; --green:#187E3E; --red:#FF462D; --stone:#9E9287;
+  --gA:#287079; --gB:#3D3B3B; --gC:#187E3E; --gD:#FF462D; --onD:#002313;
+  --code-bg:#0B2A1C; --code-fg:#E6F1EA;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --r:14px; --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#07170F; --surface:#0E2219; --sunk:#132B20; --ink:#EEF3EF; --text:#DCE5DF; --muted:#A3B3AA; --line:#24402F;
+  --forest:#001A0E; --forest-2:#0A2A1B; --teal-text:#7CC9D2; --gB:#5A5754; --stone:#B3A89E;
+  --code-bg:#03120A; --code-fg:#DDEBE2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#07170F; --surface:#0E2219; --sunk:#132B20; --ink:#EEF3EF; --text:#DCE5DF; --muted:#A3B3AA; --line:#24402F;
+  --forest:#001A0E; --forest-2:#0A2A1B; --teal-text:#7CC9D2; --gB:#5A5754; --stone:#B3A89E;
+  --code-bg:#03120A; --code-fg:#DDEBE2; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);line-height:1.12;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,3.6vw,42px);font-weight:600}
+h3{font-size:21px;font-weight:600}
+p{margin:0}
+a{color:var(--teal-text)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--mint);outline-offset:2px;border-radius:6px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-text)}
+.lede{font-size:18px;color:var(--muted);max-width:62ch}
+section.block{padding-block:clamp(56px,8vw,96px)}
+section.block.alt{background:var(--surface);border-block:1px solid var(--line)}
+.head{display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.head .pg{font-family:var(--mono);font-size:13px;color:var(--muted)}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--forest) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+nav.top .wrap{display:flex;align-items:center;gap:20px;height:56px}
+nav.top .brand{font-family:var(--serif);font-weight:600;color:var(--on-forest);font-size:17px;white-space:nowrap;text-decoration:none}
+nav.top .links{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+nav.top .links a{color:var(--on-forest-muted);text-decoration:none;font-size:14px;white-space:nowrap}
+nav.top .links a:hover{color:var(--mint)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:11px 20px;font-weight:600;font-size:15px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--mint);color:#002313}
+.btn.ghost{background:transparent;color:var(--on-forest);box-shadow:inset 0 0 0 1.5px rgba(242,240,237,.45)}
+.btn.small{padding:7px 14px;font-size:13px}
+.btn.dark{background:var(--forest);color:var(--on-forest)}
+nav.top .btn{flex:none}
+
+/* hero */
+.hero{background:var(--forest);color:var(--on-forest);padding-block:clamp(40px,6vw,72px) clamp(48px,7vw,88px);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 78% 40%,rgba(76,221,132,.12),transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);align-items:center;position:relative}
+.hero .kicker{font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mint)}
+.hero .bar{width:84px;height:7px;background:var(--red);border-radius:4px;margin:22px 0}
+.hero h1{color:var(--on-forest);font-size:clamp(40px,5.6vw,72px);font-weight:600;letter-spacing:-.01em}
+.hero .thesis{margin-top:22px;font-size:clamp(18px,1.8vw,21px);color:var(--on-forest-muted);max-width:40ch}
+.hero .thesis b{color:var(--on-forest);font-weight:600}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero .note{margin-top:14px;font-size:13px;color:var(--on-forest-muted);min-height:1.4em}
+.hero .byline{margin-top:28px;font-size:14px;color:var(--on-forest-muted)}
+.hero .byline b{color:var(--on-forest)}
+
+.board{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.board svg{width:100%;max-width:560px;height:auto;margin-inline:auto;display:block}
+.node{cursor:pointer}
+.node circle.dot{transition:r .2s ease,stroke-width .2s ease}
+.node:hover circle.dot,.node.on circle.dot{r:33}
+.node.on circle.dot{stroke:var(--mint);stroke-width:4}
+.node text.num{font:700 17px var(--sans);fill:#F2F0ED;pointer-events:none}
+.node.gD text.num{fill:#002313}
+.node text.lbl{font:600 13px var(--sans);fill:var(--on-forest-muted);pointer-events:none}
+.node.on text.lbl{fill:var(--mint)}
+.spoke{stroke:rgba(242,240,237,.16);stroke-width:1.5;transition:stroke .2s}
+.spoke.on{stroke:var(--mint);stroke-width:2.5}
+.chair-ring{fill:none;stroke:rgba(242,240,237,.35);stroke-width:1.5;stroke-dasharray:4 6}
+.chair-lbl{font:600 11px var(--sans);letter-spacing:.14em;fill:var(--on-forest-muted)}
+.lead-dot{fill:var(--mint)}
+.lead-lbl{font:700 15px var(--sans);fill:#002313}
+.lead-sub{font:500 11px var(--sans);fill:#002313}
+@media (prefers-reduced-motion:no-preference){
+  .pulse{animation:pulse 3.2s ease-out infinite;transform-origin:300px 300px}
+  @keyframes pulse{0%{opacity:.55;transform:scale(1)}100%{opacity:0;transform:scale(1.9)}}
+}
+.card-adv{background:var(--forest-2);border:1px solid rgba(242,240,237,.12);border-radius:var(--r);padding:20px 22px;display:grid;gap:10px;min-height:230px}
+.card-adv .tag{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--on-forest-muted)}
+.chip{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600;letter-spacing:.02em;text-transform:none;color:#F2F0ED}
+.chip.gA{background:var(--gA)}.chip.gB{background:var(--gB)}.chip.gC{background:var(--gC)}.chip.gD{background:var(--gD);color:var(--onD)}
+.card-adv h3{color:var(--on-forest);font-size:22px}
+.card-adv .nick{font-family:var(--serif);font-style:italic;color:var(--mint);font-size:17px}
+.card-adv .q{color:var(--on-forest);font-size:16px}
+.card-adv .meta{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px;color:var(--on-forest-muted)}
+.card-adv .meta dt{font-weight:600;color:var(--on-forest)}
+.card-adv .meta dd{margin:0}
+.card-adv .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.card-adv .pg{font-family:var(--mono);font-size:12px;color:var(--on-forest-muted)}
+
+/* facts strip */
+.facts{background:var(--forest-2);color:var(--on-forest);border-top:1px solid rgba(255,255,255,.06)}
+.facts .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
+.fact{padding:22px 14px;border-left:1px solid rgba(242,240,237,.1);display:grid;gap:4px}
+.fact:first-child{border-left:0}
+.fact b{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--mint);font-variant-numeric:tabular-nums;line-height:1}
+.fact span{font-size:13px;color:var(--on-forest-muted)}
+
+/* workflow */
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;position:relative}
+.step{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:18px 16px;text-align:left;display:grid;gap:8px;align-content:start;color:var(--text);position:relative;transition:border-color .2s,transform .2s,background .2s}
+section.alt .step{background:var(--bg)}
+.step .who{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.step.human .who{color:var(--green)}
+.step.boardstep .who{color:var(--teal-text)}
+.step .n{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--ink);line-height:1}
+.step .t{font-weight:600;color:var(--ink);font-size:15px}
+.step.on{border-color:var(--mint);transform:translateY(-3px);box-shadow:0 10px 24px -14px rgba(0,35,19,.5)}
+.step.human::after{content:"";position:absolute;left:16px;right:16px;top:0;height:4px;border-radius:0 0 4px 4px;background:var(--mint)}
+.step.boardstep::after{content:"";position:absolute;left:16px;right:16px;top:0;height:4px;border-radius:0 0 4px 4px;background:var(--teal)}
+.flow-detail{margin-top:18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.flow-detail>div{background:var(--sunk);border-radius:var(--r);padding:16px 18px;min-width:0}
+.flow-detail h4{margin:0 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.flow-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:18px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:14px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+.loop{border:1.5px dashed var(--teal);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--text)}
+
+/* matrix */
+.matrix-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table.matrix{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+.matrix th,.matrix td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:center}
+.matrix thead th{font-size:12px;font-weight:600;color:var(--muted);vertical-align:bottom}
+.matrix thead th button{background:none;border:0;color:inherit;padding:2px 4px;font-weight:600;font-size:12px}
+.matrix tbody th{text-align:left;font-weight:600;color:var(--ink);white-space:nowrap;padding-left:16px}
+.matrix td .d{display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--sunk);transition:transform .2s}
+.matrix td .d.on{background:var(--teal)}
+.matrix td .d.on.gB{background:var(--gB)}.matrix td .d.on.gC{background:var(--gC)}.matrix td .d.on.gD{background:var(--gD)}
+.matrix tr.hl th{color:var(--teal-text)}
+.matrix .colhl{background:color-mix(in srgb,var(--mint) 14%,transparent)}
+.matrix td.colhl .d.on{transform:scale(1.25)}
+.matrix tbody tr:last-child th,.matrix tbody tr:last-child td{border-bottom:0}
+.matrix .chairrow td{font-size:13px;color:var(--muted);text-align:left;padding-left:16px}
+
+/* router */
+.router{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+.qlist{display:grid;gap:8px}
+.qbtn{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;text-align:left;padding:12px 16px;color:var(--text);font-size:15px;transition:border-color .15s,background .15s}
+section.alt .qbtn{background:var(--bg)}
+.qbtn:hover{border-color:var(--teal)}
+.qbtn.on{border-color:var(--mint);background:color-mix(in srgb,var(--mint) 12%,var(--surface))}
+.answer{position:sticky;top:76px;background:var(--forest);color:var(--on-forest);border-radius:var(--r);padding:24px;display:grid;gap:12px;min-width:0}
+.answer .who{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--mint)}
+.answer h3{color:var(--on-forest)}
+.answer .why{color:var(--on-forest-muted)}
+
+/* builder */
+.builder{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px}
+.field{display:grid;gap:6px}
+.field label,.field .lab{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.04em}
+select,textarea,input[type=text]{font:inherit;color:var(--text);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+section.alt select,section.alt textarea{background:var(--bg)}
+textarea{min-height:110px;resize:vertical}
+.seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.seg button{border:1.5px solid var(--line);background:var(--surface);color:var(--text);border-radius:10px;padding:10px 12px;text-align:left;display:grid;gap:2px}
+section.alt .seg button{background:var(--bg)}
+.seg button b{font-size:14px;color:var(--ink)}
+.seg button span{font-size:12.5px;color:var(--muted)}
+.seg button.on{border-color:var(--mint);background:color-mix(in srgb,var(--mint) 12%,var(--surface))}
+.out{display:grid;gap:10px;min-width:0}
+pre.prompt{margin:0;background:var(--code-bg);color:var(--code-fg);font-family:var(--mono);font-size:13.5px;line-height:1.55;border-radius:var(--r);padding:20px;white-space:pre-wrap;word-break:break-word;border-left:4px solid var(--mint);min-height:260px}
+.copyrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.copyrow .status{font-size:13px;color:var(--muted)}
+.scope{display:flex;gap:4px;align-items:flex-end;height:46px}
+.scope i{flex:1;background:var(--sunk);border-radius:4px 4px 0 0;transition:background .2s,height .2s}
+.scope i.on{background:var(--teal)}
+
+/* guardrails */
+.layers{display:grid;gap:10px;justify-items:center}
+.layer{border-radius:12px;padding:16px 22px;color:#F2F0ED;text-align:center;display:grid;gap:4px;cursor:default;transition:transform .2s}
+.layer:hover{transform:scale(1.015)}
+.layer b{font-family:var(--serif);font-size:20px}
+.layer span{font-size:14px;opacity:.88}
+.l1{width:72%;background:var(--teal)}.l2{width:86%;background:#3D3B3B}.l3{width:100%;background:#002313;border:1px solid var(--line)}
+.fmt{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.fmt span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px}
+section.alt .fmt span{background:var(--bg)}
+.fmt span b{font-family:var(--mono);font-size:12px;color:var(--muted);margin-right:6px}
+.guard-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:36px;align-items:start}
+.callout{background:var(--sunk);border-left:4px solid var(--red);border-radius:0 12px 12px 0;padding:16px 18px;font-size:15px}
+
+/* timeline */
+.tl{display:grid;grid-template-columns:150px repeat(4,minmax(0,1fr));gap:8px 0;align-items:center}
+.tl .wk{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;border-left:1px dashed var(--line);padding:4px 8px}
+.tl .ph{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:18px}
+.tl .barx{border-radius:10px;padding:12px 14px;color:#F2F0ED;display:grid;gap:2px;min-width:0;cursor:pointer;border:2px solid transparent}
+.tl .barx b{font-size:14px}
+.tl .barx span{font-size:13px;opacity:.9}
+.tl .barx.on{border-color:var(--mint)}
+.b1{grid-column:2/4;background:var(--gA)}.b2{grid-column:3/5;background:#3D3B3B}.b3{grid-column:4/6;background:var(--gC)}
+.tl-detail{margin-top:20px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+.tl-detail .box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;min-width:0}
+section.alt .tl-detail .box{background:var(--bg)}
+.tl-detail ul{margin:8px 0 0;padding-left:20px}
+.handoffs{display:grid;gap:10px;margin-top:8px}
+.handoff{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px}
+.handoff .arrow{color:var(--red);font-weight:700}
+
+/* quality */
+.qa{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:start}
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+section.alt .check{background:var(--bg)}
+.check input{width:20px;height:20px;accent-color:var(--green);margin-top:2px;flex:none}
+.check b{display:block;color:var(--ink);font-size:15px}
+.check span{font-size:13px;color:var(--muted)}
+.check.done{border-color:var(--green)}
+.meter{background:var(--forest);color:var(--on-forest);border-radius:var(--r);padding:22px;display:grid;gap:14px}
+.meter .big{font-family:var(--serif);font-size:44px;font-weight:600;color:var(--mint);font-variant-numeric:tabular-nums;line-height:1}
+.meter .track{height:10px;background:rgba(242,240,237,.15);border-radius:999px;overflow:hidden}
+.meter .fill{height:100%;background:var(--mint);width:0;transition:width .3s ease}
+.meter ul{margin:0;padding-left:18px;color:var(--on-forest-muted);font-size:14px;display:grid;gap:4px}
+.meter ul b{color:var(--on-forest)}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:ph}
+.ph5{padding:18px 16px 18px 0;border-top:4px solid var(--line);display:grid;gap:8px;align-content:start;position:relative}
+.ph5.now{border-top-color:var(--mint)}.ph5.next{border-top-color:var(--teal)}.ph5.later{border-top-color:var(--stone)}
+.ph5 .when{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ph5 h3{font-size:19px}
+.ph5 p{font-size:14px;color:var(--muted)}
+.ask{margin-top:30px;background:var(--forest);color:var(--on-forest);border-radius:var(--r);padding:22px 26px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.ask p{font-family:var(--serif);font-size:21px;max-width:52ch}
+.ask p b{color:var(--mint);font-weight:600}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:880px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 18px}
+section.alt details{background:var(--bg)}
+summary{cursor:pointer;list-style:none;padding:16px 0;font-weight:600;color:var(--ink);display:flex;gap:14px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary .qn{font-family:var(--mono);font-size:13px;color:var(--teal-text);flex:none}
+summary::after{content:"+";margin-left:auto;font-size:22px;color:var(--muted);line-height:1}
+details[open] summary::after{content:"–"}
+details .a{padding:0 0 18px 38px;color:var(--text)}
+details .a .ref{display:block;margin-top:8px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+
+/* chapters */
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.part{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;gap:10px;align-content:start}
+section.alt .part{background:var(--bg)}
+.part .pn{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-text)}
+.part ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.part li{display:flex;gap:10px;font-size:14px;align-items:baseline}
+.part li .t{flex:1;min-width:0}
+.part li .p{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.closing{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-top:30px;padding:22px 26px;border-radius:var(--r);background:var(--forest);color:var(--on-forest)}
+.closing p{font-size:17px}
+footer{padding-block:28px;font-size:13px;color:var(--muted)}
+
+@media (max-width:980px){
+  .hero-grid,.router,.builder,.guard-grid,.qa,.tl-detail{grid-template-columns:minmax(0,1fr)}
+  .facts .wrap{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .fact:nth-child(4){border-left:0}
+  .flow{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .flow-detail{grid-template-columns:minmax(0,1fr)}
+  .road{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+  .parts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .answer{position:static}
+}
+@media (max-width:620px){
+  nav.top .links{display:none}
+  .facts .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fact{border-left:0;border-top:1px solid rgba(242,240,237,.1)}
+  .flow{grid-template-columns:minmax(0,1fr)}
+  .checks,.seg,.parts,.road{grid-template-columns:minmax(0,1fr)}
+  .tl{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .tl .lblcol{display:none}
+  .b1{grid-column:1/3}.b2{grid-column:2/4}.b3{grid-column:3/5}
+  .layer{width:100%!important}
+  details .a{padding-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Agentic Board</a>
+    <div class="links">
+      <a href="#workflow">Workflow</a><a href="#lifecycle">Lifecycle</a><a href="#router">Find an advisor</a><a href="#builder">Prompt builder</a><a href="#guardrails">Guardrails</a><a href="#first30">First 30 days</a><a href="#quality">Quality</a><a href="#roadmap">Roadmap</a><a href="#faq">FAQ</a><a href="#contents">Contents</a>
+    </div>
+    <button class="btn primary small dl" type="button">Download PDF</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">Operating playbook · October 2026</div>
+      <div class="bar"></div>
+      <h1>The Agentic Board of Change Advisors</h1>
+      <p class="thesis"><b>The lead frames. The board advises and drafts. The lead decides and delivers.</b> Ten AI advisors and a Board Chair give an OCM lead with three to five years of experience specialist depth and a second opinion across every change discipline.</p>
+      <div class="ctas">
+        <button class="btn primary dl" type="button">Download the 103-page playbook</button>
+        <a class="btn ghost" href="#builder">Build a prompt</a>
+      </div>
+      <p class="note" id="dlnote" role="status"></p>
+      <p class="byline"><b>Michelle Franklin</b> · Director, Organizational Change Management – US</p>
+    </div>
+    <div class="board">
+      <svg viewBox="0 0 600 600" role="img" aria-label="The board: the OCM lead at the center, the Board Chair ring, and ten advisors around it, colored by group" id="ring"></svg>
+      <article class="card-adv" id="advcard" aria-live="polite"></article>
+    </div>
+  </div>
+</header>
+
+<div class="facts">
+  <div class="wrap">
+    <div class="fact"><b>10</b><span>specialist advisors</span></div>
+    <div class="fact"><b>4</b><span>advisor groups</span></div>
+    <div class="fact"><b>5</b><span>workflow steps</span></div>
+    <div class="fact"><b>4</b><span>operating modes</span></div>
+    <div class="fact"><b>8</b><span>test scenarios per advisor</span></div>
+    <div class="fact"><b>103</b><span>pages, 23 chapters, 4 appendices</span></div>
+  </div>
+</div>
+
+<section class="block" id="workflow">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">How the lead works with the board</span>
+      <h2>Five steps, and the human owns three of them</h2>
+      <p class="lede">Select a step, or play the loop. Green steps are human checkpoints; teal steps are the board.</p>
+      <span class="pg">Chapter 6 · page 22</span>
+    </div>
+    <div class="flow" id="flow"></div>
+    <div class="flow-detail" id="flowdetail"></div>
+    <div class="flow-bar">
+      <div class="legend"><span><i style="background:var(--mint)"></i>Human step</span><span><i style="background:var(--teal)"></i>Board step</span><span class="loop">Feedback loop: new learning returns to the Context Brief</span></div>
+      <button class="btn dark small" id="play" type="button" aria-pressed="false">Play the loop</button>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="lifecycle">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Board architecture</span>
+      <h2>Who leads at each stage of the change</h2>
+      <p class="lede">Filled dots mark the indicative lead advisors for each lifecycle stage. Any advisor can be called at any stage, and the Board Chair coordinates all of them. Select an advisor's column to highlight it.</p>
+      <span class="pg">Chapter 3 · page 11</span>
+    </div>
+    <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+  </div>
+</section>
+
+<section class="block" id="router">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Find the right advisor</span>
+      <h2>Start from the question you are stuck on</h2>
+      <p class="lede">Every advisor owns one core question. Pick the one closest to yours and the board shows you who to call and what to ask.</p>
+      <span class="pg">Chapters 9–18 · pages 31–70</span>
+    </div>
+    <div class="router">
+      <div class="qlist" id="qlist"></div>
+      <div class="answer" id="answer" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="builder">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Prompt builder</span>
+      <h2>Compose a board request in the standard format</h2>
+      <p class="lede">Choose an advisor and an operating mode, adjust the task, and copy the prompt. Start with one advisor; widen the scope as the need grows.</p>
+      <span class="pg">Chapter 7 · page 25 · Appendix B · page 95</span>
+    </div>
+    <div class="builder">
+      <div style="display:grid;gap:18px;min-width:0">
+        <div class="field"><label for="b-adv">Advisor</label><select id="b-adv"></select></div>
+        <div class="field"><span class="lab" id="modelab">Operating mode</span><div class="seg" id="b-mode" role="group" aria-labelledby="modelab"></div></div>
+        <div class="field"><span class="lab">Scope</span><div class="scope" id="scope" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+        <div class="field"><label for="b-task">Task</label><textarea id="b-task"></textarea></div>
+      </div>
+      <div class="out">
+        <pre class="prompt" id="b-out"></pre>
+        <div class="copyrow"><button class="btn dark small" id="copy" type="button">Copy prompt</button><span class="status" id="copystatus" role="status"></span></div>
+        <p style="font-size:14px;color:var(--muted)">Attach your Client Change Context Brief and remove client-identifying details before you send anything to the board.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="guardrails">
+  <div class="wrap guard-grid">
+    <div>
+      <div class="head">
+        <span class="eyebrow">Guardrails</span>
+        <h2>Three layers keep ten advisors consistent and honest</h2>
+        <p class="lede">Read from the bottom up. The shared brief is the foundation, the charter governs behavior, and the advisors sit on top.</p>
+        <span class="pg">Chapter 5 · page 16</span>
+      </div>
+      <div class="callout"><b>Why the shared brief matters.</b> If the Vision advisor assumes a six-month global rollout and the Training advisor assumes twelve months phased, the strategy is incoherent. One Context Brief prevents that.</div>
+    </div>
+    <div>
+      <div class="layers">
+        <div class="layer l1"><b>Ten advisor personas</b><span>Specialist expertise in a standard response format</span></div>
+        <div class="layer l2"><b>Board Operating Charter</b><span>Outcome focus, facts separated from assumptions, no fabricated data</span></div>
+        <div class="layer l3"><b>Client Change Context Brief</b><span>One shared scope, timeline, and set of assumptions</span></div>
+      </div>
+      <div class="fmt" aria-label="Standard response format">
+        <span><b>1</b>Recommendation</span><span><b>2</b>Rationale</span><span><b>3</b>Analysis</span><span><b>4</b>Deliverable</span><span><b>5</b>Risks</span><span><b>6</b>Decisions required</span><span><b>7</b>Success measures</span><span><b>8</b>Next actions</span><span><b>9</b>Board consultation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="first30">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Use case · fictional global ERP program</span>
+      <h2>The first 30 days: from limited visibility to a strategy and baselines</h2>
+      <p class="lede">Advisor outputs feed each other. Select a phase to see the advisors, outputs, and handoffs. Week boundaries are illustrative, not a fixed method.</p>
+      <span class="pg">Chapter 19 · page 71</span>
+    </div>
+    <div class="tl" id="tl">
+      <span class="lblcol"></span><span class="wk">Week 1</span><span class="wk">Week 2</span><span class="wk">Week 3</span><span class="wk">Week 4</span>
+    </div>
+    <div class="tl-detail" id="tldetail"></div>
+  </div>
+</section>
+
+<section class="block" id="quality">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Testing and quality assurance</span>
+      <h2>Run every advisor through eight scenarios before a real engagement</h2>
+      <p class="lede">Tick each scenario as you test it. Your progress is saved in this browser only.</p>
+      <span class="pg">Chapter 21 · page 80</span>
+    </div>
+    <div class="qa">
+      <div class="checks" id="checks"></div>
+      <aside class="meter">
+        <div><div class="big" id="qcount">0 / 8</div><div style="color:var(--on-forest-muted);font-size:14px;margin-top:4px">scenarios tested</div></div>
+        <div class="track"><div class="fill" id="qfill"></div></div>
+        <ul>
+          <li><b>Quality:</b> sound and defensible</li>
+          <li><b>Consistency:</b> compatible assumptions across advisors</li>
+          <li><b>Practical value:</b> faster, better decisions</li>
+        </ul>
+        <p style="font-size:14px;color:var(--on-forest-muted)">Then run the cross-advisor tests: resistance, readiness gaps, and a difficult go-live.</p>
+        <button class="btn ghost small" id="qreset" type="button">Clear my ticks</button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="roadmap">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Roadmap</span>
+      <h2>Prove the specialists first, then add collaboration and orchestration</h2>
+      <span class="pg">Chapter 23 · page 86</span>
+    </div>
+    <div class="road">
+      <div class="ph5 now"><span class="when">Now</span><h3>1 · Define and configure</h3><p>Finalize the ten personas, charter, response standard, and Context Brief.</p></div>
+      <div class="ph5 now"><span class="when">Now</span><h3>2 · Test the specialists</h3><p>Run each advisor through the eight test scenarios.</p></div>
+      <div class="ph5 next"><span class="when">Next</span><h3>3 · Test collaboration</h3><p>Cross-advisor scenarios: resistance, readiness gaps, a difficult go-live.</p></div>
+      <div class="ph5 next"><span class="when">Next</span><h3>4 · Build reusable assets</h3><p>Templates, scorecards, and exemplar deliverables, kept separate from client data.</p></div>
+      <div class="ph5 later"><span class="when">Later</span><h3>5 · Orchestrate</h3><p>Add an orchestration layer only if the value justifies it.</p></div>
+    </div>
+    <div class="ask">
+      <p>Decision requested: <b>approve a pilot</b> on a [fictional or real] engagement.</p>
+      <button class="btn primary dl" type="button">Download the pilot plan (in the playbook)</button>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Frequently asked questions</span>
+      <h2>Ten questions people ask first</h2>
+    </div>
+    <div class="faq" id="faqlist"></div>
+  </div>
+</section>
+
+<section class="block alt" id="contents">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Inside the playbook</span>
+      <h2>Contents</h2>
+      <p class="lede">Page numbers match the printed PDF.</p>
+    </div>
+    <div class="parts" id="parts"></div>
+    <div class="closing">
+      <p>The full playbook includes the templates, the Operating Charter, and configuration prompts for every advisor.</p>
+      <button class="btn primary dl" type="button">Download PDF · 103 pages</button>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">The Agentic Board of Change Advisors · Operating playbook · Examples use a fictional client and are illustrative.</div></footer>
+
+<script>
+const PDF = 'Agentic-Board-OCM-Playbook.pdf';
+const G = {A:{k:'gA',n:'Group A · Strategy and understanding'},B:{k:'gB',n:'Group B · Impact, readiness, and mobilization'},C:{k:'gC',n:'Group C · Enablement and launch'},D:{k:'gD',n:'Group D · Measurement'}};
+const ADV = [
+ {n:1,s:'Vision',g:'A',name:'Change Vision & Business Value Strategist',nick:'The Commercial Challenger',q:'Why is this change worth doing, and how will we prove it created value?',del:'Benefits map, WIIFM matrix, executive talking points',works:[2,10],ch:'Pushes from activity thinking to business outcomes.',bd:'Never invents financial benefits, baselines, or executive commitments.',tr:'Draft a case for change for our global ERP program and challenge any benefit we cannot yet evidence.',p:31},
+ {n:2,s:'Stakeholders',g:'A',name:'Stakeholder Intelligence & Engagement Strategist',nick:'The Political Navigator',q:'Who can enable or obstruct the change, and what will it take to earn their support?',del:'Stakeholder map, influence–interest matrix, engagement strategy',works:[3,6],ch:'Surfaces uncomfortable dynamics; asks whose view is missing.',bd:'Never treats resistance as irrational or infers motives without evidence.',tr:'Build a stakeholder map for the ERP program and flag where sponsor alignment looks weakest.',p:35},
+ {n:3,s:'Experience',g:'A',name:'Employee Experience & Change Journey Designer',nick:'The Empathy Architect',q:'What will this change actually feel like for the people living through it?',del:'Empathy maps, journey maps, experience principles',works:[2,8,7],ch:'Spots where the future state clashes with day-to-day reality.',bd:'Never presents fictional persona traits as researched fact; labels hypotheses.',tr:'Create three illustrative personas for ERP end users and map their journey from awareness to sustained use.',p:39},
+ {n:4,s:'Readiness',g:'B',name:'Business Readiness & Operational Transition Expert',nick:'The Operational Realist',q:'Can the business operate successfully when the change goes live?',del:'Readiness heatmap, scorecards, go/no-go criteria',works:[5,9],ch:'Doubts unsupported green status; wants demonstrated capability.',bd:'Never equates training completion or a positive survey with readiness.',tr:'Design a readiness assessment for a phased global rollout and propose go/no-go criteria.',p:43},
+ {n:5,s:'Impact & Risk',g:'B',name:'Change Impact, Risk & Mitigation Architect',nick:'The Systems Thinker',q:'What is changing, who must work differently, and what could go wrong?',del:'Impact assessment, heatmap, risk register, mitigation tracker',works:[3,4,10],ch:'Intolerant of untraceable assumptions; tracks mitigations to closure.',bd:'Keeps impacts, risks, and issues distinct and separately defined.',tr:'Draft an impact assessment for the finance function in a global ERP rollout, with a starter risk register.',p:47},
+ {n:6,s:'Champions',g:'B',name:'Change Champion & Local Mobilization Strategist',nick:'The Grassroots Mobilizer',q:'How do we create credible local ownership without overloading employees?',del:'Network design, champion profile, onboarding pack, scorecard',works:[2,7],ch:'Realistic about volunteer capacity; optimizes for coverage and influence.',bd:'Champions do not replace managers, training, or help desk; no universal ratio.',tr:'Recommend a champion network model for a multi-country rollout and justify how you sized it.',p:51},
+ {n:7,s:'Communications',g:'C',name:'Strategic Communications & Narrative Architect',nick:'The Narrative Craftsman',q:'What does each audience need to hear, from whom, through which channel, and when?',del:'Messaging matrix, channel plan, manager toolkit, FAQ',works:[1,3],ch:'Watches for message saturation, silence, rumors, and leadership gaps.',bd:'Never invents brand standards or unapproved leader commitments; labels voice provisional.',tr:'Draft a sponsor announcement and manager cascade for the first deployment wave, in a provisional voice.',p:55},
+ {n:8,s:'Training',g:'C',name:'Learning Strategy & Capability Development Architect',nick:'The Learning Engineer',q:'Can people perform the new work correctly, confidently, and independently?',del:'Learning strategy, curriculum map, facilitator materials',works:[5,4],ch:'Judges success by demonstrated capability, not attendance.',bd:'Assumes no single method fits every country or role; flags legal checks.',tr:'Run a training needs analysis for ERP finance users and outline a train-the-trainer approach.',p:59},
+ {n:9,s:'Deployment',g:'C',name:'Pilot, Deployment & Hypercare Strategist',nick:'The Calm Incident Commander',q:'How do we launch safely, detect friction quickly, and stabilize adoption?',del:'Pilot charter, launch checklist, hypercare model',works:[4,10],ch:'Separates defects from knowledge gaps, process failures, and access problems.',bd:'Technical success is not proof of adoption; IT owns incident management.',tr:'Design a pilot charter and hypercare exit criteria for our first deployment wave.',p:63},
+ {n:10,s:'Analytics',g:'D',name:'Adoption Analytics & Change Insights Strategist',nick:'The Evidence-Based Investigator',q:'Are people adopting the change, what explains the results, and what should we do next?',del:'KPI dictionary, dashboard spec, insight-to-action log',works:[1,4],ch:'Skeptical of vanity metrics; pairs numbers with qualitative context.',bd:'No causation from correlation; logins alone do not prove adoption.',tr:'Specify an adoption dashboard with a KPI dictionary, thresholds, and the actions each breach triggers.',p:67}
+];
+const STAGES = [['Discovery and assessment',[1,2,3,4,5]],['Strategy and design',[4,6,7,8,10]],['Build and preparation',[6,7,8]],['Pilot and deployment',[4,9]],['Hypercare and sustained adoption',[9,10]]];
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = { get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}} };
+
+/* ---------- board ring ---------- */
+let current = 4;
+function drawRing(){
+  const cx=300, cy=300, R=210;
+  let s = `<circle class="chair-ring" cx="${cx}" cy="${cy}" r="118"/><text class="chair-lbl" x="${cx}" y="${cy-128}" text-anchor="middle">BOARD CHAIR</text>`;
+  const pts = ADV.map((a,i)=>{const t=(i*36-90)*Math.PI/180;return [cx+R*Math.cos(t), cy+R*Math.sin(t)]});
+  pts.forEach(([x,y],i)=>{ s += `<line class="spoke" id="sp${i+1}" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`; });
+  s += `<circle class="lead-dot pulse" cx="${cx}" cy="${cy}" r="62"/><circle class="lead-dot" cx="${cx}" cy="${cy}" r="62"/>
+        <text class="lead-lbl" x="${cx}" y="${cy-2}" text-anchor="middle">OCM lead</text><text class="lead-sub" x="${cx}" y="${cy+16}" text-anchor="middle">decides and delivers</text>`;
+  ADV.forEach((a,i)=>{const [x,y]=pts[i]; const below = y>=cy-20;
+    s += `<g class="node ${G[a.g].k}" data-n="${a.n}" tabindex="0" role="button" aria-label="Advisor ${a.n}: ${esc(a.name)}">
+      <circle class="dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="28" style="fill:var(--${G[a.g].k})"/>
+      <text class="num" x="${x.toFixed(1)}" y="${(y+6).toFixed(1)}" text-anchor="middle">${a.n}</text>
+      <text class="lbl" x="${x.toFixed(1)}" y="${(below? y+50 : y-40).toFixed(1)}" text-anchor="middle">${esc(a.s)}</text></g>`;});
+  $('#ring').innerHTML = s;
+  $('#ring').querySelectorAll('.node').forEach(g=>{
+    const go=()=>{selectAdv(+g.dataset.n); stopAuto();};
+    g.addEventListener('click',go); g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+    g.addEventListener('mouseenter',()=>{selectAdv(+g.dataset.n); stopAuto();});
+  });
+}
+function selectAdv(n){
+  current=n; const a=ADV[n-1];
+  document.querySelectorAll('#ring .node').forEach(g=>g.classList.toggle('on',+g.dataset.n===n));
+  document.querySelectorAll('#ring .spoke').forEach(l=>l.classList.toggle('on',l.id==='sp'+n));
+  $('#advcard').innerHTML = `
+    <div class="tag"><span class="chip ${G[a.g].k}">Advisor ${a.n}</span>${esc(G[a.g].n)}</div>
+    <h3>${esc(a.name)}</h3><div class="nick">${esc(a.nick)}</div>
+    <p class="q">“${esc(a.q)}”</p>
+    <dl class="meta"><dt>Delivers</dt><dd>${esc(a.del)}</dd><dt>Challenge</dt><dd>${esc(a.ch)}</dd><dt>Works with</dt><dd>${a.works.map(w=>esc(ADV[w-1].s)).join(', ')}</dd></dl>
+    <div class="row"><span class="pg">Chapter ${a.n+8} · page ${a.p}</span><button class="btn primary small" type="button" data-build="${a.n}">Use this advisor</button></div>`;
+}
+let auto=null;
+function startAuto(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; auto=setInterval(()=>selectAdv(current%10+1),3500); }
+function stopAuto(){ if(auto){clearInterval(auto);auto=null;} }
+document.addEventListener('click',e=>{const b=e.target.closest('[data-build]'); if(!b) return; $('#b-adv').value=b.dataset.build; onAdvChange(); document.getElementById('builder').scrollIntoView({behavior:'smooth'});});
+
+/* ---------- workflow ---------- */
+const STEPS = [
+ {t:'Lead shares context',who:'Human',h:true,in:'Client Change Context Brief, priorities, constraints, real client data',do:'Frame the problem and the decision you need to make. Name what is fact and what is assumption.',out:'A clear request with the brief attached'},
+ {t:'Chair routes to advisors',who:'Board',h:false,in:'Your request and the shared brief',do:'The Board Chair picks the advisors and the operating mode, and spots where disciplines cross.',out:'The right advisors, working from one set of assumptions'},
+ {t:'Advisors respond in standard format',who:'Board',h:false,in:'The brief, the charter, and each advisor’s persona',do:'Recommendation first, then rationale, analysis, deliverable, risks, decisions required, measures, next actions.',out:'First-draft deliverables, challenge, risks, executive-ready language'},
+ {t:'Lead validates with real data',who:'Human',h:true,in:'Board drafts and real stakeholders',do:'Test every claim against client facts. Fill placeholders only with validated data. Reject what you cannot defend.',out:'A defensible, client-specific draft'},
+ {t:'Lead delivers to client',who:'Human',h:true,in:'The validated draft',do:'Refine, present to the client and sponsor, and feed new learning back into the Context Brief.',out:'A decision, and an updated brief for the next round'}
+];
+let stepOn=0, playing=null;
+function drawFlow(){
+  $('#flow').innerHTML = STEPS.map((s,i)=>`<button type="button" class="step ${s.h?'human':'boardstep'}" data-i="${i}"><span class="who">${s.who} step</span><span class="n">${i+1}</span><span class="t">${esc(s.t)}</span></button>`).join('');
+  $('#flow').querySelectorAll('.step').forEach(b=>b.addEventListener('click',()=>{stopPlay();setStep(+b.dataset.i);}));
+  setStep(0);
+}
+function setStep(i){
+  stepOn=i; const s=STEPS[i];
+  $('#flow').querySelectorAll('.step').forEach((b,j)=>b.classList.toggle('on',j===i));
+  $('#flowdetail').innerHTML = `<div><h4>Inputs</h4><p>${esc(s.in)}</p></div><div><h4>What happens</h4><p>${esc(s.do)}</p></div><div><h4>Output</h4><p>${esc(s.out)}</p></div>`;
+}
+function stopPlay(){ if(playing){clearInterval(playing);playing=null;$('#play').textContent='Play the loop';$('#play').setAttribute('aria-pressed','false');} }
+$('#play').addEventListener('click',()=>{ if(playing){stopPlay();return;} $('#play').textContent='Pause';$('#play').setAttribute('aria-pressed','true'); setStep((stepOn+1)%5); playing=setInterval(()=>setStep((stepOn+1)%5),2600); });
+
+/* ---------- matrix ---------- */
+let colOn=null;
+function drawMatrix(){
+  let h = '<thead><tr><th scope="col" style="text-align:left;padding-left:16px">Lifecycle stage</th>' + ADV.map(a=>`<th scope="col" data-c="${a.n}"><button type="button" data-col="${a.n}" title="${esc(a.name)}">${a.n}<br>${esc(a.s)}</button></th>`).join('') + '</tr></thead><tbody>';
+  STAGES.forEach(([name,leads])=>{ h += `<tr><th scope="row">${esc(name)}</th>` + ADV.map(a=>`<td data-c="${a.n}"><span class="d ${leads.includes(a.n)?'on '+G[a.g].k:''}" aria-label="${leads.includes(a.n)?'lead':'available'}"></span></td>`).join('') + '</tr>'; });
+  h += `<tr class="chairrow"><td colspan="11"><b>Board Chair</b> coordinates every stage: synthesizes advice, resolves conflicts between advisors, and prepares executive decisions.</td></tr></tbody>`;
+  $('#matrix').innerHTML = h;
+  $('#matrix').querySelectorAll('[data-col]').forEach(b=>b.addEventListener('click',()=>{colOn = colOn===+b.dataset.col?null:+b.dataset.col; paintCol();}));
+}
+function paintCol(){
+  $('#matrix').querySelectorAll('[data-c]').forEach(c=>c.classList.toggle('colhl',+c.dataset.c===colOn));
+  $('#matrix').querySelectorAll('tbody tr').forEach(r=>{const cell=r.querySelector(`td[data-c="${colOn}"] .d.on`); r.classList.toggle('hl',!!cell);});
+}
+
+/* ---------- router ---------- */
+function drawRouter(){
+  $('#qlist').innerHTML = ADV.map(a=>`<button type="button" class="qbtn" data-n="${a.n}">${esc(a.q)}</button>`).join('');
+  $('#qlist').querySelectorAll('.qbtn').forEach(b=>b.addEventListener('click',()=>route(+b.dataset.n)));
+  route(4);
+}
+function route(n){
+  const a=ADV[n-1];
+  $('#qlist').querySelectorAll('.qbtn').forEach(b=>b.classList.toggle('on',+b.dataset.n===n));
+  $('#answer').innerHTML = `<span class="who">Call Advisor ${a.n} · ${esc(a.nick)}</span><h3>${esc(a.name)}</h3>
+   <p class="why"><b style="color:var(--on-forest)">Watch for:</b> ${esc(a.bd)}</p>
+   <pre class="prompt" style="min-height:0">${esc(a.tr)}</pre>
+   <div class="copyrow"><button class="btn primary small" type="button" data-build="${a.n}">Open in prompt builder</button><span style="font-size:13px;color:var(--on-forest-muted)">Chapter ${a.n+8} · page ${a.p}</span></div>`;
+}
+
+/* ---------- builder ---------- */
+const MODES = [
+ {k:'solo',t:'Solo advisor',d:'One expert drafts a deliverable',w:1},
+ {k:'cross',t:'Cross-functional',d:'Two to four advisors, one problem',w:2},
+ {k:'challenge',t:'Board challenge',d:'Strongest case for and against',w:3},
+ {k:'e2e',t:'End-to-end',d:'Discovery to sustained adoption',w:4}
+];
+let mode='solo';
+const RULES = 'Work only from the attached Client Change Context Brief. Separate facts from assumptions and label every assumption. Do not invent facts, figures, scores, baselines, or leader commitments; use [placeholders] where data is missing, and ask targeted questions if the request is ambiguous.';
+const FORMAT = 'Respond in the board’s standard format, including only the sections that add value: Recommendation, Rationale, Analysis, Deliverable, Risks, Decisions required, Success measures, Next actions, Board consultation.';
+function buildPrompt(){
+  const a=ADV[+$('#b-adv').value-1], task=$('#b-task').value.trim()||'[describe the task]';
+  const team=[a.n,...a.works].map(n=>`Advisor ${n} (${ADV[n-1].name})`);
+  let p;
+  if(mode==='solo') p = `Act as Advisor ${a.n}, the ${a.name} ("${a.nick}").\n\nTask: ${task}\n\n${RULES}\n\n${FORMAT}`;
+  else if(mode==='cross') p = `Board Chair: convene ${team.join(', ')}.\n\nShared problem: ${task}\n\nHave each advisor contribute from their own discipline, show the handoffs between them, and flag any point where their assumptions conflict. Then synthesize one recommendation.\n\n${RULES}\n\n${FORMAT}`;
+  else if(mode==='challenge') p = `Board challenge, led by Advisor ${a.n} (${a.name}) with ${team.slice(1).join(' and ')}.\n\nThe position to stress-test: ${task}\n\nEach advisor works independently and gives: the strongest case for, the strongest case against, and the evidence that would resolve it. The Board Chair then names the decision I need to make and what would change it.\n\n${RULES}`;
+  else p = `Board Chair: guide me through an end-to-end engagement, from discovery through strategy, design, deployment, and sustained adoption. Start with the first 30 days.\n\nContext: ${task}\n\nFor each stage, name the lead advisors (Advisor ${a.n}, ${a.name}, is my starting point), the deliverables, the decision gates, and what I must validate with real client data before moving on.\n\n${RULES}\n\n${FORMAT}`;
+  $('#b-out').textContent = p;
+  const w=MODES.find(m=>m.k===mode).w;
+  $('#scope').querySelectorAll('i').forEach((el,i)=>{el.classList.toggle('on',i<w); el.style.height=(30+i*22)+'%';});
+}
+function drawBuilder(){
+  $('#b-adv').innerHTML = ADV.map(a=>`<option value="${a.n}">${a.n} · ${esc(a.name)}</option>`).join('');
+  $('#b-mode').innerHTML = MODES.map(m=>`<button type="button" data-m="${m.k}" aria-pressed="${m.k===mode}" class="${m.k===mode?'on':''}"><b>${m.t}</b><span>${m.d}</span></button>`).join('');
+  $('#b-mode').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.m; $('#b-mode').querySelectorAll('button').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b);}); buildPrompt();}));
+  $('#b-adv').addEventListener('change',onAdvChange);
+  $('#b-task').addEventListener('input',buildPrompt);
+  $('#b-adv').value='4'; onAdvChange();
+}
+function onAdvChange(){ $('#b-task').value = ADV[+$('#b-adv').value-1].tr; buildPrompt(); }
+$('#copy').addEventListener('click',()=>{
+  const txt=$('#b-out').textContent;
+  const done=()=>{$('#copystatus').textContent='Copied to clipboard.';};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents($('#b-out'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copystatus').textContent='Copy is blocked here. The prompt is selected: press Ctrl+C or ⌘C.';};
+  try{ navigator.clipboard.writeText(txt).then(done,fallback); }catch(e){ fallback(); }
+});
+
+/* ---------- timeline ---------- */
+const PH = [
+ {c:'b1',w:'Weeks 1–2',t:'Understand',adv:[1,2,3],out:['Case for change and WIIFM','Stakeholder map','Illustrative employee personas']},
+ {c:'b2',w:'Weeks 2–3',t:'Assess',adv:[4,5],out:['Change impact assessment and risk register','Readiness framework and baseline']},
+ {c:'b3',w:'Weeks 3–4',t:'Plan',adv:[6,7,8,10],out:['Champion network','Communications strategy','Training strategy','Adoption measurement framework']}
+];
+function drawTL(){
+  let h='';
+  PH.forEach((p,i)=>{ h += `<span class="ph lblcol">${p.t}</span><button type="button" class="barx ${p.c}" data-i="${i}" style="grid-row:${i+2}"><b>${p.w} · ${p.t}</b><span>Advisors ${p.adv.join(', ')}</span></button>`; });
+  $('#tl').insertAdjacentHTML('beforeend',h);
+  $('#tl').querySelectorAll('.lblcol.ph').forEach((el,i)=>{el.style.gridRow=i+2;el.style.gridColumn=1;});
+  $('#tl').querySelectorAll('.barx').forEach(b=>b.addEventListener('click',()=>setPhase(+b.dataset.i)));
+  setPhase(0);
+}
+function setPhase(i){
+  const p=PH[i];
+  $('#tl').querySelectorAll('.barx').forEach((b,j)=>b.classList.toggle('on',j===i));
+  $('#tldetail').innerHTML = `<div class="box"><span class="eyebrow">${p.w} · ${p.t}</span><h3 style="margin-top:6px">${p.adv.map(n=>ADV[n-1].s).join(' · ')}</h3><ul>${p.out.map(o=>`<li>${esc(o)}</li>`).join('')}</ul></div>
+   <div class="box"><span class="eyebrow">Handoffs that matter</span><div class="handoffs">
+     <div class="handoff"><span class="chip gB">Change Impact</span><span class="arrow">→</span><span class="chip gC">Training</span><span class="chip gB">Readiness</span></div>
+     <div class="handoff"><span class="chip gA">Stakeholder personas</span><span class="arrow">→</span><span class="chip gC">Communications</span></div>
+     <p style="font-size:14px;color:var(--muted);margin-top:4px">Milestone: strategy and baselines ready for client review.</p></div></div>`;
+}
+
+/* ---------- quality ---------- */
+const QS = [
+ ['Ambiguous request','Asks targeted questions or labels assumptions'],
+ ['Incomplete data','Uses [placeholders]; never fabricates facts or scores'],
+ ['Conflicting priorities','Surfaces the trade-off and the decision owner'],
+ ['Executive deliverable','Recommendation first, decision-ready language'],
+ ['Detailed working artifact','Usable template with clear fields and owners'],
+ ['Cross-advisor request','Compatible assumptions across advisors'],
+ ['Critical challenge','Strongest case for and against, plus evidence'],
+ ['Follow-up changes','Updates outputs consistently when scope changes']
+];
+let qdone = store.get('qa-ticks') || [];
+function drawQA(){
+  $('#checks').innerHTML = QS.map((q,i)=>`<label class="check" for="qa${i}"><input type="checkbox" id="qa${i}" data-i="${i}"><span><b>${esc(q[0])}</b><span>${esc(q[1])}</span></span></label>`).join('');
+  $('#checks').querySelectorAll('input').forEach(c=>{ c.checked=qdone.includes(+c.dataset.i); c.addEventListener('change',()=>{ const i=+c.dataset.i; qdone = c.checked ? [...new Set([...qdone,i])] : qdone.filter(x=>x!==i); store.set('qa-ticks',qdone); paintQA(); }); });
+  $('#qreset').addEventListener('click',()=>{qdone=[];store.set('qa-ticks',qdone);$('#checks').querySelectorAll('input').forEach(c=>c.checked=false);paintQA();});
+  paintQA();
+}
+function paintQA(){ $('#qcount').textContent=`${qdone.length} / 8`; $('#qfill').style.width=(qdone.length/8*100)+'%'; $('#checks').querySelectorAll('.check').forEach((l,i)=>l.classList.toggle('done',qdone.includes(i))); }
+
+/* ---------- FAQ ---------- */
+const FAQ = [
+ ['Is this replacing OCM practitioners?','No. The advisors analyze, draft, and challenge; the OCM lead decides and delivers. Nothing reaches the client without the lead’s judgment. The board gives a lead with three to five years of experience the specialist depth and second opinion they usually lack.','Chapters 1–2 · pages 4, 8'],
+ ['What do I need before I start?','A completed Client Change Context Brief (scope, timeline, populations, assumptions, constraints) so every advisor works from the same facts. Then load the shared charter and persona prompts from Appendix A.','Chapter 5 · page 16 · Appendix A · page 89'],
+ ['Which advisor should I use?','Start from each advisor’s core question, or use the “Find the right advisor” tool above. If the problem spans disciplines, ask the Board Chair to route it.','Chapter 3 · page 11'],
+ ['How do the four operating modes differ, and where do I start?','Solo: one advisor drafts a deliverable. Cross-functional: two to four advisors share a problem. Board challenge: the strongest case for and against, and the evidence that resolves it. End-to-end: the board guides the whole lifecycle. Start with solo.','Chapter 7 · page 25'],
+ ['What does the Board Chair do? Is it an eleventh advisor?','No. It is a coordinating function and the default mode: it synthesizes advice, resolves conflicts between advisors, and prepares executive decisions.','Chapter 8 · page 28'],
+ ['Can I trust what the board produces?','Only after you validate it. The charter forbids fabricated facts, figures, baselines, and leader commitments. Advisors label assumptions and use placeholders, and workflow step 4 (validate with real data) is mandatory.','Chapters 5, 6, 21'],
+ ['What about client data and confidentiality?','Minimize and anonymize what you share, follow firm and client policy including privacy and data-residency requirements, and agree your firm’s disclosure position on AI assistance before a pilot.','Chapter 22 · page 84'],
+ ['What can’t the board do?','Prompts alone give no parallel execution, scheduled monitoring, automated handoffs, or persistent shared artifacts. Those need an orchestration layer, which the roadmap adds only if the value justifies it.','Chapters 22–23'],
+ ['How do we know it is working?','Run each advisor through the eight test scenarios and the cross-advisor tests, then score quality, consistency, and practical value against pilot success criteria agreed with your sponsor.','Chapter 21 · page 80'],
+ ['How do we roll it out, and what is the ask?','Five phases: define, test the specialists, test collaboration, build reusable assets, orchestrate only if justified. The immediate ask is approval for a pilot; Chapter 19’s 30-day plan doubles as the pilot script.','Chapters 19, 23']
+];
+function drawFAQ(){ $('#faqlist').innerHTML = FAQ.map((f,i)=>`<details${i===0?' open':''}><summary><span class="qn">${String(i+1).padStart(2,'0')}</span>${esc(f[0])}</summary><div class="a">${esc(f[1])}<span class="ref">${esc(f[2])}</span></div></details>`).join(''); }
+
+/* ---------- contents ---------- */
+const PARTS = [
+ ['Front matter',[['How to Use This Playbook',2]]],
+ ['Part I · Foundations',[['1. Why an Agentic Board',4],['2. The Human-in-the-Loop Operating Model',8],['3. Board Architecture',11],['4. Anatomy of an Advisor',14]]],
+ ['Part II · Operating the Board',[['5. Guardrails: Context Brief, Charter, and Response Format',16],['6. The Five-Step Workflow',22],['7. Four Operating Modes',25],['8. The Board Chair Playbook',28]]],
+ ['Part III · The Advisor Playbooks',ADV.map(a=>[`${a.n+8}. Advisor ${a.n} — ${a.name}`,a.p])],
+ ['Parts IV–VI · Applying, Quality, Implementation',[['19. The First 30 Days of a Global ERP Program',71],['20. Lifecycle Plays',76],['21. Testing and Quality Assurance',80],['22. Limits, Data Protection, and Responsible Use',84],['23. Roadmap and Pilot Plan',86]]],
+ ['Appendices',[['A. Persona Configuration Prompts',89],['B. Prompt Library',95],['C. Deliverables Index and RACI',98],['D. Glossary',101]]]
+];
+function drawParts(){ $('#parts').innerHTML = PARTS.map(([n,items])=>`<div class="part"><span class="pn">${esc(n)}</span><ol>${items.map(([t,p])=>`<li><span class="t">${esc(t)}</span><span class="p">${p}</span></li>`).join('')}</ol></div>`).join(''); }
+
+/* ---------- download ---------- */
+let downloads; let dlReady = (async()=>{ try{ downloads = window.claude?.use ? await window.claude.use('downloads') : null; }catch(e){ downloads=null; } return downloads; })();
+async function savePdf(){
+  const note=$('#dlnote');
+  note.textContent='Preparing the PDF…';
+  const d = await dlReady;
+  if(!d){ note.textContent='Downloads are not available in this view. Open the artifact on claude.ai to save the PDF.'; return; }
+  try{
+    const res = await fetch(PDF); if(!res.ok) throw new Error('fetch');
+    const blob = await res.blob();
+    await d.save({filename:'Agentic-Board-OCM-Playbook.pdf', data:blob});
+    note.textContent='Saved: Agentic-Board-OCM-Playbook.pdf (103 pages).';
+  }catch(e){
+    const c=e&&e.code;
+    note.textContent = c==='declined' ? 'Download cancelled.' : c==='rate_limited' ? 'A save prompt is already open. Finish it, then try again.' : 'The PDF could not be saved here. Try again from claude.ai.';
+  }
+}
+document.querySelectorAll('.dl').forEach(b=>b.addEventListener('click',()=>{ if(!document.getElementById('top').contains(b)) document.getElementById('top').scrollIntoView({behavior:'smooth'}); savePdf(); }));
+
+drawRing(); selectAdv(4); startAuto(); drawFlow(); drawMatrix(); drawRouter(); drawBuilder(); drawTL(); drawQA(); drawFAQ(); drawParts();
+$('#ring').addEventListener('mouseleave',()=>{});
+</script>

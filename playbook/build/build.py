@@ -73,20 +73,18 @@ def render(pages):
     body = re.sub(r'<colgroup>.*?</colgroup>', '', body, flags=re.S)
     tpl = open(os.path.join(HERE, 'template.html'), encoding='utf-8').read()
     doc = tpl.replace('$title$', 'The Agentic Board of Change Advisors — Operating Playbook') \
-             .replace('$body$', COVER + '\n' + toc + '\n' + body)
+             .replace('$body$', toc + '\n' + body)
     open(OUT_HTML, 'w', encoding='utf-8').write(doc)
     env = dict(os.environ, NODE_PATH=subprocess.run(['npm', 'root', '-g'], capture_output=True, text=True).stdout.strip())
-    subprocess.run(['node', os.path.join(HERE, 'render.cjs'), OUT_HTML, OUT_PDF], check=True, env=env)
-    # Re-render the cover without the running footer and swap it in as page 1.
-    cover_html = os.path.join(HERE, '_cover.html')
-    open(cover_html, 'w', encoding='utf-8').write(tpl.replace('$title$', 'Cover').replace('$body$', COVER))
+    # Render the cover (no running footer) and the numbered body separately, then join them,
+    # so the cover is unnumbered and fonts are embedded once per part rather than once per page.
     tmp = os.path.join(HERE, '_tmp')
     os.makedirs(tmp, exist_ok=True)
+    cover_html = os.path.join(HERE, '_cover.html')
+    open(cover_html, 'w', encoding='utf-8').write(tpl.replace('$title$', 'Cover').replace('$body$', '<style>@page{margin:0}</style>' + COVER))
     subprocess.run(['node', os.path.join(HERE, 'render.cjs'), cover_html, os.path.join(tmp, 'cover.pdf'), 'nofooter'], check=True, env=env)
-    subprocess.run(['pdfseparate', '-f', '1', '-l', '1', os.path.join(tmp, 'cover.pdf'), os.path.join(tmp, 'c%d.pdf')], check=True)
-    subprocess.run(['pdfseparate', '-f', '2', OUT_PDF, os.path.join(tmp, 'b%04d.pdf')], check=True)
-    parts = [os.path.join(tmp, 'c1.pdf')] + sorted(glob.glob(os.path.join(tmp, 'b*.pdf')))
-    subprocess.run(['pdfunite'] + parts + [OUT_PDF], check=True)
+    subprocess.run(['node', os.path.join(HERE, 'render.cjs'), OUT_HTML, os.path.join(tmp, 'body.pdf')], check=True, env=env)
+    subprocess.run(['pdfunite', os.path.join(tmp, 'cover.pdf'), os.path.join(tmp, 'body.pdf'), OUT_PDF], check=True)
     subprocess.run(['rm', '-rf', tmp, cover_html])
 
 
@@ -101,7 +99,7 @@ def find_pages():
         for i, pg in enumerate(pages[1:], start=2):  # skip the cover; the TOC page is excluded by its heading
             head = re.sub(r'\s+', ' ', ' '.join(pg.strip().splitlines()[:12]))
             if key in head and 'Contents' not in pg:
-                found[n] = i
+                found[n] = i - 1  # printed page number; the cover is unnumbered
                 break
     return found, len(pages) - (1 if pages and not pages[-1].strip() else 0)
 
