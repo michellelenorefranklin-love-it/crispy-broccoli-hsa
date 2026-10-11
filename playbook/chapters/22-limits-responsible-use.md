@@ -43,6 +43,26 @@ Treat everything you put into the board as information leaving your direct contr
 
 > **Example:** Instead of pasting a stakeholder interview transcript, write: "Illustrative: Senior leader, [BU B], supportive of the goal but worried that the timeline conflicts with year-end close. Two of five regional managers interviewed raised the same concern." The advisor gets what it needs; the client's people stay protected.
 
+### Pre-share checklist
+
+Run this check every time you paste client material into the board:
+
+- [ ] The tool is approved for this client's data.
+- [ ] Client, people, and location names are replaced with roles or placeholders.
+- [ ] No personal data about individuals is included.
+- [ ] Only the information this task needs is included.
+- [ ] Privacy and data-residency requirements for the countries involved have been checked.
+- [ ] Anything marked confidential by the client has been excluded or cleared.
+
+You can also ask the board to help you minimize before you share real material. Use it on a draft you have already anonymized, as a second check, not as your only control.
+
+```text
+Before I use the text below, review it for anything that could identify
+the client, a person, or a location, and for any detail the Change Impact,
+Risk & Mitigation Architect would not need to assess impacts. List what I
+should remove or replace with a placeholder. Do not analyze the content yet.
+```
+
 ## Verification practices
 
 Board outputs are drafts until you verify them. Before anything reaches the client:
@@ -54,6 +74,18 @@ Board outputs are drafts until you verify them. Before anything reaches the clie
 - **Read for invented commitments.** Remove any statement that implies a leader has agreed to something they have not.
 - **Check external claims.** Methods, standards, or regulations the board mentions must be confirmed from authoritative sources before you rely on them.
 - **Apply your own judgment.** Ask whether you would defend this advice to the sponsor without mentioning the board. If not, it is not ready.
+
+### Warning signs of fabrication
+
+Look harder at an output when you see:
+
+- Precise percentages or scores you did not supply
+- Named frameworks, studies, or benchmarks presented as authoritative
+- Quotes attributed to leaders or employees
+- Confident statements about a country, business unit, or system you have not described
+- Every assumption conveniently resolved in favor of the recommendation
+
+When you find one, ask the advisor directly: "Which statements in this output are based on information I provided, and which are assumptions or general knowledge?" Then fix the source of the gap in the Context Brief.
 
 ## Disclosure to clients
 
