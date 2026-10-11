@@ -21,6 +21,16 @@ The board as a whole is judged on three measures of success:
 | Consistency | Do outputs use compatible assumptions across advisors and deliverables? |
 | Practical value | Does it lead to faster, better decisions for the lead? |
 
+## How to run a test cycle
+
+1. **Fix the setup.** Load the current persona version, the Board Operating Charter, the response format, and a fictional Context Brief. Record all four versions in the test log.
+2. **Use a fresh conversation for each scenario.** Earlier answers in the same thread can mask how the persona behaves from a cold start. The exception is scenario 8, which deliberately follows a previous output.
+3. **Run the prompt exactly as written.** Do not rescue a weak answer with follow-up hints; score what you got first.
+4. **Score immediately** against the rubric, while the output is in front of you.
+5. **Fix one thing at a time.** If you change a persona, rerun the failing scenario before moving on, then apply the regression approach at the end of this chapter.
+
+Budget roughly [number] hours per persona for a first full cycle, and adjust once you know your own pace.
+
 ## The eight test scenarios
 
 Run all eight scenarios for every persona. Replace the bracketed advisor name and adapt the deliverable to the advisor's discipline.
