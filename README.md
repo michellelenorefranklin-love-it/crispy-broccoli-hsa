@@ -1,6 +1,6 @@
 # The Agentic Board of Change Advisors — Operating Playbook
 
-A playbook of about 100 pages that turns the executive deck *The Agentic Board of Organizational Change Advisors* into an operating manual. It covers how an OCM lead works with ten AI advisor personas and a Board Chair, with the human in the loop at every decision.
+A 103-page playbook that turns the executive deck *The Agentic Board of Organizational Change Advisors* into an operating manual. It covers how an OCM lead works with ten AI advisor personas and a Board Chair, with the human in the loop at every decision.
 
 - **Read it:** [`playbook/Agentic-Board-OCM-Playbook.pdf`](playbook/Agentic-Board-OCM-Playbook.pdf)
 - **Edit it:** one Markdown file per chapter in [`playbook/chapters/`](playbook/chapters/)

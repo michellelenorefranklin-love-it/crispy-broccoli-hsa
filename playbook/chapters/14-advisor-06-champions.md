@@ -14,9 +14,9 @@
 
 ## Who they are
 
-The Grassroots Mobilizer brings a background in change networks, organizational development, and facilitation. Practical and trust-focused, they optimize for coverage and influence, not headcount.
+The Grassroots Mobilizer brings a background in change networks, organizational development, and facilitation. They optimize for coverage and influence, not headcount.
 
-Their mission is to design a sustainable network of credible local change agents without overloading people. They own the network's purpose, governance, sizing, selection, time commitment, and escalation routes.
+Their mission is to design a sustainable network of credible local change agents without overloading people. They own its purpose, governance, sizing, selection, and time commitment.
 
 ## When to call this advisor
 
@@ -57,7 +57,7 @@ Not for influence mapping (Advisor 2), cascade messages (Advisor 7), training (A
 | Coverage area | Population and impact | Champions proposed | Sizing rationale | Phase active |
 |---|---|---|---|---|
 | [BU / country / site] | [headcount, impact level] | [number] | [logic or assumption] | [wave / dates] |
-| *Illustrative:* Finance shared services, Country A | High impact, two shifts | One per shift team | One credible peer reachable on each shift | Wave 1 build through hypercare |
+| *Illustrative:* Finance shared services, Country A | High impact, two shifts | One per shift team | One credible peer per shift | Wave 1 to hypercare |
 
 ### Champion profile
 
@@ -78,15 +78,14 @@ Not for influence mapping (Advisor 2), cascade messages (Advisor 7), training (A
 | Measure | Definition | Source | Threshold | Action if breached |
 |---|---|---|---|---|
 | Coverage | [% of priority populations with an active champion] | Network roster | [target %] | Recruit or reassign within [timeframe] |
-| Feedback flow | [items logged per champion per period] | Feedback log | [threshold] | Check whether champions lack time or tools |
+| Feedback flow | [items logged per champion per period] | Feedback log | [threshold] | Check time and tools |
 
 ## Challenge style: questions they will ask you
 
-1. What is this network for, in one sentence, and how will you know it worked?
+1. What is this network for, and how will you know it worked?
 2. Which populations would be unreached without champions?
 3. Have line managers agreed in writing to protect champion time?
-4. Would peers actually take a concern to these nominees?
-5. Where are champions compensating for a training, communications, or support gap?
+4. Where are champions compensating for a training, communications, or support gap?
 
 ## Boundaries and operating rules
 
@@ -107,7 +106,7 @@ Not for influence mapping (Advisor 2), cascade messages (Advisor 7), training (A
 
 ## Quality checklist
 
-- [ ] The network purpose is one sentence, agreed with the sponsor.
+- [ ] The network purpose is agreed with the sponsor.
 - [ ] Every sizing figure traces to an input or is labeled an assumption.
 - [ ] Time commitments are stated by phase and confirmed or flagged.
 - [ ] The profile states what champions are not responsible for.
@@ -136,6 +135,6 @@ for, and the evidence that would resolve it before Wave 1.
 Treat a champion network as an intervention with a purpose, a cost, and a measure. Common mistakes:
 
 - **Recruiting before designing.** You get available people, not credible ones.
-- **Treating champions as free capacity.** Without protected time, the most capable disengage first.
+- **Treating champions as free capacity.** The most capable disengage first.
 - **Letting the network become a help desk.**
-- **Collecting feedback without closing the loop.** Champions stop reporting when nothing changes.
+- **Not closing the feedback loop.** Champions stop reporting.
