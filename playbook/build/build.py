@@ -98,8 +98,8 @@ def find_pages():
         n = os.path.basename(path)[:2]
         t = re.sub(r'\s+', ' ', title_of(open(path, encoding='utf-8').read()))
         key = t[:28]
-        for i, pg in enumerate(pages[2:], start=3):  # skip cover and first TOC page
-            head = re.sub(r'\s+', ' ', ' '.join(pg.strip().splitlines()[:4]))
+        for i, pg in enumerate(pages[3:], start=4):  # skip cover and the TOC pages
+            head = re.sub(r'\s+', ' ', ' '.join(pg.strip().splitlines()[:12]))
             if key in head and 'Contents' not in head:
                 found[n] = i
                 break

@@ -148,6 +148,28 @@ Use this charter to request approval to trial the board on one engagement. Fill 
 
 A fictional engagement carries no client data risk and lets you test freely. A real engagement shows true value and surfaces practical constraints. If you choose a real engagement, prefer one in early stages, with a supportive sponsor and a lead who has completed phase 2 testing.
 
+### Pilot timeline (illustrative)
+
+| Period | Activities | Checkpoint |
+|---|---|---|
+| Before start | Confirm phases 1–2 complete for in-scope personas; set baselines; brief the reviewer | Sponsor approval of charter |
+| First [number] weeks | Run the board on discovery deliverables; log time, issues, and decisions | First sponsor checkpoint |
+| Middle [number] weeks | Add cross-functional and board challenge modes; test handoffs on live work | Second sponsor checkpoint |
+| Final [number] weeks | Complete in-scope deliverables; collect reviewer scores and lead reflections | End-of-pilot review |
+
+### Prompt to prepare the pilot
+
+Use the board itself to pressure-test your charter before you submit it.
+
+```text
+Act as the Board Chair. Here is my draft pilot charter for trialing the
+board on a [fictional or real] engagement: [paste]. Challenge it: what is
+the strongest case for approving it, the strongest case against, and what
+evidence would resolve the difference? Check that the success criteria are
+measurable, that no target is presented as fact without a baseline, and
+that data handling follows the rules I have described.
+```
+
 ## Success criteria
 
 Agree on the criteria and how they will be measured before the pilot starts. Collect a baseline from comparable past work where you can.
@@ -180,6 +202,15 @@ Cadence:
 - **End of pilot:** review against all criteria and a recommendation to stop, extend, or scale.
 
 Any data-handling incident is reported immediately to the policy contact and the sponsor, and use pauses until it is resolved.
+
+### End-of-pilot review agenda
+
+1. Results against each success criterion, with evidence
+2. Examples: one deliverable where the board added clear value, one where it did not
+3. Guardrail performance: fabrication catches, data-handling issues, consistency findings
+4. Lead and reviewer reflections on professional growth and workload
+5. Changes needed to personas, charter, or assets
+6. Recommendation and decision: stop, extend, or scale, and what scaling would require
 
 ## Risks and mitigations
 
