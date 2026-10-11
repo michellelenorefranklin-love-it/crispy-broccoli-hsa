@@ -79,7 +79,7 @@ The eight elements fall into three groups. Use this grouping when you review a p
 
 Without operating rules, a persona produces polished but generic documents or invents client context. Both failures are dangerous because they look like good work.
 
-A language model will fill gaps. If you ask for a readiness assessment without readiness data, a persona with no operating rules will often supply plausible scores. If you ask for a case for change without financial data, it may supply plausible benefits. The output reads well, and nothing in it is true for your client.
+A language model will fill gaps. If you ask for a readiness assessment without readiness data, a persona with no operating rules will often supply plausible scores. If you ask for a case for change without financial data, it may supply plausible benefits. It reads well and none of it is true for your client.
 
 Operating rules stop this. A well-written set does four things:
 
@@ -136,10 +136,3 @@ Extend a persona when a client context needs specialist depth, for example a reg
 4. **Retest.** Run the eight test scenarios from Chapter 21 on the extended persona before live use.
 
 > **Watch out:** Resist adding an eleventh advisor. Most needs can be met by extending an existing persona or by a cross-functional request. If you do add one, give it all eight elements, a distinct challenge style, and defined "works with" partners, and confirm with your director that it does not duplicate an existing scope.
-
-## Before you move on
-
-- [ ] You can name the eight elements and group them into who, what, and how.
-- [ ] You can explain why operating rules matter most.
-- [ ] You know how to test element 8 with an incomplete request.
-- [ ] You can diagnose a persona problem to a single element.

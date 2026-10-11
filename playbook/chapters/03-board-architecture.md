@@ -13,11 +13,11 @@ The ten advisors are organized into four groups that follow the logic of a chang
 | C | Enablement and launch | 7, 8, 9 | Do people know, can they do it, and will launch be safe? |
 | D | Measurement and continuous improvement | 10 | Is it working, and what should we do next? |
 
-> **Tip:** In executive conversations you may see a simpler three-part grouping: Understand (advisors 1–3), Assess and mobilize (4–6), and Enable and measure (7–10). It describes the same board. Use the four groups when you are working with the board and the three-part version when a slide needs to be simple.
+> **Tip:** In executive conversations you may see a simpler three-part grouping: Understand (advisors 1–3), Assess and mobilize (4–6), and Enable and measure (7–10). It describes the same board; use it when a slide needs to be simple.
 
 ## The ten advisors
 
-Each advisor has a full title, a nickname that signals their personality and challenge style, and a core question that defines their discipline. Learn the nicknames; they are the fastest way to remember what each advisor will push you on.
+Each advisor has a full title, a nickname that signals their personality and challenge style, and a core question that defines their discipline. Learn the nicknames; they signal what each advisor will push you on.
 
 | # | Advisor | Nickname | Group | Core question |
 |---|---|---|---|---|
@@ -63,7 +63,7 @@ The Board Chair does three things:
 | Resolves conflicts between advisors | Surfaces disagreements, explains the trade-off, and names the evidence that would settle it | Visible trade-offs instead of hidden contradictions |
 | Prepares executive decisions | Frames the decision, options, risks, and recommendation for a sponsor or steering committee | Decision-ready material you refine and present |
 
-The Board Chair coordinates every lifecycle stage. It also protects consistency: if two advisors are working from different assumptions, the Chair should flag the conflict against the Context Brief before you see two incompatible drafts.
+The Board Chair coordinates every lifecycle stage and protects consistency, flagging advisors whose assumptions conflict with the Context Brief.
 
 > **Watch out:** The Board Chair resolves conflicts between advisors by making the trade-off clear. It does not make the decision for you. When advisors disagree on something material, such as a go-live date or the load placed on frontline employees, the decision is yours to recommend and the client's to make. Chapter 8, "The Board Chair Playbook," gives the full method.
 
@@ -143,11 +143,3 @@ Three routing rules keep you out of trouble:
 ```text
 Board Chair: I need to recommend to the steering committee whether Wave 1 of our fictional global ERP program should go live on [date]. Route this to the advisors you judge relevant, show me where they disagree, and prepare a one-page decision framing with options, risks, and the evidence still missing.
 ```
-
-## Before you move on
-
-- [ ] You can name the four groups and which advisors belong to each.
-- [ ] You know each advisor's nickname and core question.
-- [ ] You can explain why the Board Chair is a function, not an eleventh specialist.
-- [ ] You can identify the lead advisors for your engagement's current lifecycle stage.
-- [ ] You know the two early handoffs: impact to training and readiness, personas to communications.
