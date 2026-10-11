@@ -1,138 +1,79 @@
 # 4. Anatomy of an Advisor
 
-Every advisor on the board is built from the same eight elements. The standard structure makes advisors predictable to work with and easy to compare. The distinct content inside each element is what gives them different personalities, and that is what creates useful debate rather than ten generic consultants.
-
-This chapter explains the eight elements, shows each one with an example from a real advisor profile, explains why the eighth element matters most, and gives you a checklist for designing, tuning, or extending a persona.
+Every advisor is built from the same eight elements. The shared structure makes advisors comparable; distinct content inside each element creates useful debate.
 
 ## The eight elements
 
-| # | Element | What it defines |
-|---|---|---|
-| 1 | Professional identity | The background and expertise the advisor speaks from |
-| 2 | Mission | The outcome the advisor exists to achieve |
-| 3 | Scope and boundaries | What the advisor owns and what it must not do |
-| 4 | Decision-making lens | The core question and standard the advisor applies to every problem |
-| 5 | Core capabilities | The analysis and work the advisor can perform |
-| 6 | Deliverables | The artifacts the advisor produces |
-| 7 | Personality and challenge style | How the advisor communicates and how it pushes back |
-| 8 | Operating rules | The rules that govern behavior, especially when data is missing |
+| # | Element | What it defines | Example |
+|---|---|---|---|
+| 1 | Professional identity | The background the advisor speaks from | Systems Thinker: business analysis, process transformation, enterprise systems |
+| 2 | Mission | The outcome the advisor exists to achieve | Learning Engineer: people *demonstrate* future-state skills, not attendance |
+| 3 | Scope and boundaries | What it owns and must not do | Grassroots Mobilizer: owns network design; champions do not replace managers or help desk |
+| 4 | Decision-making lens | Its core question and answer standard | Operational Realist: "Can the business operate successfully when the change goes live?" |
+| 5 | Core capabilities | The analysis it can perform | Evidence-Based Investigator: leading and lagging indicators; dashboards |
+| 6 | Deliverables | The named artifacts it produces | Calm Incident Commander: pilot charter, launch checklist, hypercare model |
+| 7 | Personality and challenge style | Its tone and what it pushes back on | Commercial Challenger: pushes from activity to business outcomes |
+| 8 | Operating rules | Behavior, especially when data is missing | Empathy Architect: labels persona traits as hypotheses, not research |
 
-### 1. Professional identity
-
-The identity tells the model which body of expertise to draw on. A specific background produces specific advice.
-
-> **Example:** The Systems Thinker (Advisor 5) has a background in business analysis, process transformation, enterprise systems, and risk management. That is why it frames impacts across people, process, technology, roles, and behaviors rather than as a general list of "changes."
-
-### 2. Mission
-
-The mission is one sentence stating the outcome the advisor exists to deliver. It keeps the advisor focused on purpose rather than activity.
-
-> **Example:** The Learning Engineer (Advisor 8) exists to ensure people can demonstrate the skills needed in the future state. Note the word "demonstrate": the mission itself rules out judging success by attendance.
-
-### 3. Scope and boundaries
-
-Scope states what the advisor owns. Boundaries state what it must not do or claim. Together they prevent overlap and overreach.
-
-> **Example:** The Grassroots Mobilizer (Advisor 6) owns network purpose, governance, sizing rationale, and selection criteria. Its boundary: champions do not replace managers, training, or the help desk, and there is no universal champion ratio.
-
-### 4. Decision-making lens
-
-The lens is the core question the advisor asks of every problem, plus the standard its answers follow. It is how the advisor thinks.
-
-> **Example:** The Operational Realist (Advisor 4) asks, "Can the business operate successfully when the change goes live?" Its standard is readiness by wave, evidence and gaps, critical risks, and the required decision.
-
-### 5. Core capabilities
-
-Capabilities list the analysis the advisor can perform. They tell you what you can ask for.
-
-> **Example:** The Evidence-Based Investigator (Advisor 10) can build a measurement framework with leading and lagging indicators and design dashboards segmented by business unit, geography, role, and wave.
-
-### 6. Deliverables
-
-Deliverables are the named artifacts the advisor produces. Naming them lets you request outputs precisely.
-
-> **Example:** The Calm Incident Commander (Advisor 9) delivers a pilot charter, launch checklist, hypercare model, and lessons-learned log.
-
-### 7. Personality and challenge style
-
-Personality sets the advisor's tone. Challenge style sets what it pushes back on. This element is what makes the board a thinking partner rather than a drafting service.
-
-> **Example:** The Commercial Challenger (Advisor 1) is confident, commercially minded, articulate, and constructively challenging. It pushes you from activity thinking to business outcomes. The Political Navigator (Advisor 2) is perceptive, diplomatic, and discreet, and it asks whose view is missing.
-
-### 8. Operating rules
-
-Operating rules govern how the advisor behaves, especially what it does when information is missing or uncertain.
-
-> **Example:** The Empathy Architect (Advisor 3) never presents fictional persona traits as researched fact and labels hypotheses. The Narrative Craftsman (Advisor 7) never invents brand standards or unapproved leader commitments and labels its voice as provisional.
+Element 7 makes the board a thinking partner rather than a drafting service.
 
 ## Who they are, what they do, how they think
 
-The eight elements fall into three groups. Use this grouping when you review a persona or explain the design to a colleague.
-
 | Group | Elements | What it answers | If it is weak |
 |---|---|---|---|
-| Who they are | 1 Professional identity, 2 Mission, 7 Personality and challenge style | Whose voice is this, and what does it care about? | Advisors sound alike and do not challenge |
-| What they do | 3 Scope and boundaries, 5 Core capabilities, 6 Deliverables | What can I ask for, and what is out of bounds? | Advisors overlap, overreach, or produce vague outputs |
-| How they think | 4 Decision-making lens, 8 Operating rules | How does it reason, and how does it behave under uncertainty? | Outputs are polished but generic, or invent client context |
+| Who they are | 1, 2, 7 | Whose voice, and what does it care about? | Advisors sound alike and do not challenge |
+| What they do | 3, 5, 6 | What can I ask for? | Overlap, overreach, vague outputs |
+| How they think | 4, 8 | How does it reason under uncertainty? | Generic or invented outputs |
 
 ## Why element 8 matters most
 
-Without operating rules, a persona produces polished but generic documents or invents client context. Both failures are dangerous because they look like good work.
+Without operating rules, a persona produces generic documents or invents client context, and both look like good work. Ask for a readiness assessment without data and a model may supply plausible scores that are not true for your client.
 
-A language model will fill gaps. If you ask for a readiness assessment without readiness data, a persona with no operating rules will often supply plausible scores. If you ask for a case for change without financial data, it may supply plausible benefits. It reads well and none of it is true for your client.
+Good operating rules:
 
-Operating rules stop this. A well-written set does four things:
+1. **Forbid fabrication** of facts, scores, baselines, benefits, quotes, or commitments.
+2. **Define behavior when data is missing:** ask questions or label assumptions.
+3. **Separate facts from assumptions.**
+4. **Tie the advisor to the Context Brief** and flag conflicts.
 
-1. **Forbids fabrication.** No invented facts, scores, baselines, financial benefits, quotes, or commitments.
-2. **Defines behavior when data is missing.** Ask targeted questions, or proceed with clearly labeled assumptions.
-3. **Separates facts from assumptions** in every output so you can see what needs validating.
-4. **Ties the advisor to the shared context.** Work from the Client Change Context Brief and flag anything that conflicts with it.
-
-These rules echo the Board Operating Charter's principles: business-outcome focus, facts separated from assumptions, no fabricated data, and client-specific advice. The charter sets them for the whole board. Each advisor's element 8 applies them to its own discipline.
-
-> **Watch out:** When you test a persona, the first thing to check is element 8. Give it an incomplete request and see what happens. If it asks questions or labels assumptions, the rules are working. If it produces confident specifics you never supplied, fix element 8 before using that persona on a live engagement. Chapter 21, "Testing and Quality Assurance," gives the full set of test scenarios.
+> **Watch out:** Test element 8 first with an incomplete request. Confident specifics you never supplied mean element 8 needs fixing. See Chapter 21.
 
 ## Persona-design checklist
 
-Use this checklist when you review an existing persona or write a new one. Appendix A, "Persona Configuration Prompts," contains the full configuration text for all ten advisors.
+Appendix A contains configuration text for all ten advisors.
 
-- [ ] **Identity** names a specific professional background, not "an expert in change."
-- [ ] **Mission** is one sentence stating an outcome, not a list of activities.
-- [ ] **Scope** lists what the advisor owns, and **boundaries** state at least one thing it must never do or claim.
-- [ ] **Lens** includes a single core question and a standard structure for answers.
-- [ ] **Capabilities** are specific enough that you could write a request against each one.
-- [ ] **Deliverables** are named artifacts you would recognize on an engagement.
-- [ ] **Personality** includes three or four distinct traits, and **challenge style** names what the advisor pushes back on.
-- [ ] **Operating rules** forbid fabrication, define behavior when data is missing, and require labeled assumptions.
-- [ ] The persona references the Client Change Context Brief and the standard nine-section response format.
-- [ ] The persona's challenge style is distinct from the others on the board.
+- [ ] **Identity** names a specific background.
+- [ ] **Mission** is one sentence stating an outcome.
+- [ ] **Scope** lists what it owns; **boundaries** name something it must never do.
+- [ ] **Lens** has one core question and answer structure.
+- [ ] **Capabilities** and **deliverables** are specific.
+- [ ] **Challenge style** names what it pushes back on, distinct from other advisors.
+- [ ] **Operating rules** forbid fabrication and require labeled assumptions.
+- [ ] It references the Context Brief and nine-section response format.
 
 ## How to tune or extend a persona
 
-You will adjust personas as you use them. Tune when an advisor behaves in a way you do not want. Extend when a client needs depth the standard persona does not cover.
-
 ### Tuning
 
-Diagnose which element is causing the problem, then change only that element.
+Change only the element causing the problem.
 
 | Symptom | Likely element | Adjustment |
 |---|---|---|
-| Output is generic and could apply to any client | 8 Operating rules | Require use of Context Brief details and questions when they are missing |
-| Advisor invents numbers or commitments | 8 Operating rules | Strengthen the no-fabrication rule with discipline-specific examples |
-| Advisor agrees with everything | 7 Personality and challenge style | Name what it must challenge and require at least one challenge per response |
-| Advisor drifts into another discipline | 3 Scope and boundaries | Add a boundary and a routing rule to the relevant advisor |
-| Deliverables are vague or unstructured | 6 Deliverables, 4 Lens | Specify the deliverable structure and the answer standard |
-| Tone does not suit the audience | 7 Personality | Adjust traits for executive or working-level audiences |
+| Output is generic | 8 Operating rules | Require Context Brief details or questions |
+| Invents numbers or commitments | 8 Operating rules | Add discipline-specific no-fabrication examples |
+| Agrees with everything | 7 Challenge style | Require one named challenge per response |
+| Drifts into another discipline | 3 Scope and boundaries | Add a boundary and a routing rule |
+| Vague deliverables | 6 Deliverables, 4 Lens | Specify the structure and answer standard |
 
-> **Tip:** Change one element at a time and rerun the same test prompt. If you change several at once, you will not know which change fixed the problem.
+> **Tip:** Rerun the same test prompt after each change.
 
 ### Extending
 
-Extend a persona when a client context needs specialist depth, for example a regulated industry or a works council environment in [country].
+Extend for specialist depth, such as a regulated industry in [country].
 
-1. **Add, do not replace.** Add industry or regional context to identity and capabilities. Keep the original mission and lens.
-2. **Add boundaries with the depth.** If you add regulatory knowledge, add a rule that the advisor flags legal or regulatory points for verification rather than stating them as settled.
-3. **Keep client-specific content out of the persona.** Client facts belong in the Context Brief. Keep generic, reusable persona text separate from client-specific information so personas remain reusable across engagements.
-4. **Retest.** Run the eight test scenarios from Chapter 21 on the extended persona before live use.
+1. **Add, do not replace.** Keep the mission and lens.
+2. **Add boundaries with the depth,** such as flagging legal points for verification.
+3. **Keep client facts in the Context Brief,** not the persona.
+4. **Retest** with the Chapter 21 scenarios.
 
-> **Watch out:** Resist adding an eleventh advisor. Most needs can be met by extending an existing persona or by a cross-functional request. If you do add one, give it all eight elements, a distinct challenge style, and defined "works with" partners, and confirm with your director that it does not duplicate an existing scope.
+> **Watch out:** Resist adding an eleventh advisor. If you must, give it all eight elements and confirm with your director it duplicates no existing scope.
