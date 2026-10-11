@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Agentic Board Playbook — FAQ</title>
+<link rel="stylesheet" href="../build/fonts.css">
+<style>
+:root{--ink:#002313;--text:#1F2A25;--muted:#55615B;--line:#D6D0C9;--bg:#F2F0ED;--surface:#FFFFFF;--forest:#002313;--forest2:#0B3322;--cream:#F2F0ED;--creamM:#B9C7BF;--mint:#4CDD84;--teal:#1F5F67;--red:#FF462D;--gA:#287079;--gB:#3D3B3B;--gC:#187E3E;}
+@page{size:Letter;margin:0.5in 0 0.45in}
+@page :first{margin:0 0 0.45in}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#FFFFFF;font-family:'IBM Plex Sans',Arial,sans-serif;color:var(--text);font-size:10.4pt;line-height:1.5}
+h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;color:var(--ink);margin:0;line-height:1.15}
+.hero{background:var(--forest);color:var(--cream);padding:0.62in 0.7in 0.5in;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 80% at 88% 30%,rgba(76,221,132,.16),transparent 70%)}
+.hero>*{position:relative}
+.kicker{font-size:8.5pt;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mint)}
+.bar{width:64px;height:6px;background:var(--red);border-radius:3px;margin:14pt 0}
+.hero h1{color:var(--cream);font-size:32pt;font-weight:600;max-width:6in}
+.hero p.thesis{margin-top:12pt;font-size:12pt;color:var(--creamM);max-width:5.9in}
+.hero p.thesis b{color:var(--cream);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:5pt;margin-top:16pt}
+.chips span{font-size:7.6pt;font-weight:600;color:var(--cream);padding:3pt 8pt;border-radius:999px}
+.byline{margin-top:14pt;font-size:9pt;color:var(--creamM)}.byline b{color:var(--cream)}
+.facts{background:var(--forest2);display:grid;grid-template-columns:repeat(5,1fr);padding:0 0.7in}
+.facts div{padding:10pt 8pt;border-left:1px solid rgba(242,240,237,.12);display:grid;gap:1pt}
+.facts div:first-child{border-left:0;padding-left:0}
+.facts b{font-family:'Source Serif 4',serif;font-size:20pt;color:var(--mint);line-height:1}
+.facts span{font-size:7.8pt;color:var(--creamM)}
+main{padding:0.36in 0.7in 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12pt;gap:16pt}
+.eyebrow{font-size:8.2pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.head h2{font-size:20pt;font-weight:600;margin-top:4pt}
+.head .note{font-size:8.5pt;color:var(--muted);max-width:2.6in;text-align:right}
+.q{background:#F7F5F2;border:1px solid var(--line);border-radius:10px;padding:11pt 15pt;margin-bottom:8pt;display:grid;grid-template-columns:30pt 1fr;gap:0 8pt;break-inside:avoid}
+.q .n{font-family:'IBM Plex Mono',monospace;font-size:9pt;color:var(--teal);padding-top:3pt}
+.q h3{font-size:13pt;font-weight:600;margin-bottom:5pt}
+.q p{margin:0 0 5pt}
+.q ul{margin:2pt 0 5pt;padding-left:14pt}
+.q li{margin:1.5pt 0}
+.q .ref{font-family:'IBM Plex Mono',monospace;font-size:8pt;color:var(--muted);margin-top:3pt;display:flex;gap:6pt;align-items:center}
+.q .ref::before{content:"";width:14pt;height:3px;border-radius:2px;background:var(--mint)}
+.q b{color:var(--ink);font-weight:600}
+.tag{display:inline-block;font-size:7.6pt;font-weight:700;letter-spacing:.06em;padding:1pt 6pt;border-radius:999px;vertical-align:1pt;margin-right:3pt;color:#F2F0ED}
+.closing{background:var(--forest);color:var(--cream);border-radius:10px;padding:14pt 18pt;display:flex;justify-content:space-between;gap:16pt;align-items:center;break-inside:avoid;margin-top:4pt}
+.closing p{font-family:'Source Serif 4',serif;font-size:12.5pt;margin:0;max-width:4.6in}
+.closing p b{color:var(--mint);font-weight:600}
+.closing .src{font-size:8.2pt;color:var(--creamM);text-align:right}
+.pagebreak{break-before:page;height:0.45in}
+</style></head><body>
+<header class="hero">
+  <div class="kicker">Operating playbook · Frequently asked questions</div>
+  <div class="bar"></div>
+  <h1>The Agentic Board of Change Advisors</h1>
+  <p class="thesis"><b>The lead frames. The board advises and drafts. The lead decides and delivers.</b> Ten questions OCM leads, directors, and sponsors ask first, with answers drawn from the playbook.</p>
+  <div class="chips">
+    <span style="background:var(--gA)">Vision</span><span style="background:var(--gA)">Stakeholders</span><span style="background:var(--gA)">Experience</span><span style="background:var(--gB)">Readiness</span><span style="background:var(--gB)">Impact &amp; Risk</span><span style="background:var(--gB)">Champions</span><span style="background:var(--gC)">Communications</span><span style="background:var(--gC)">Training</span><span style="background:var(--gC)">Deployment</span><span style="background:var(--red);color:#002313">Analytics</span><span style="background:var(--cream);color:#002313">Board Chair</span>
+  </div>
+  <p class="byline"><b>Michelle Franklin</b> · Director, Organizational Change Management – US</p>
+</header>
+<div class="facts">
+  <div><b>10</b><span>specialist advisors</span></div>
+  <div><b>4</b><span>advisor groups</span></div>
+  <div><b>5</b><span>workflow steps</span></div>
+  <div><b>4</b><span>operating modes</span></div>
+  <div><b>103</b><span>pages in the playbook</span></div>
+</div>
+<main>
+  <div class="head">
+    <div><div class="eyebrow">Frequently asked questions</div><h2>Ten questions people ask first</h2></div>
+    <div class="note">Page references point to the 103-page playbook PDF.</div>
+  </div>
+
+  <article class="q"><span class="n">01</span><div>
+    <h3>Is this replacing OCM practitioners?</h3>
+    <p>No. The model rests on <b>human in the loop</b>: the advisors analyze, draft, and challenge; the OCM lead decides and delivers. Nothing reaches the client without the lead's judgment. The board gives a lead with three to five years of experience the specialist depth and second opinion they usually lack. It does not take their seat.</p>
+    <div class="ref">Chapters 1–2 · pages 4 and 8</div></div></article>
+
+  <article class="q"><span class="n">02</span><div>
+    <h3>What do I need before I start?</h3>
+    <p>A completed <b>Client Change Context Brief</b>: scope, timeline, populations, assumptions, and constraints. Every advisor works from it, so they don't contradict each other. If the Vision advisor assumes a six-month rollout and Training assumes twelve months phased, the strategy is incoherent. Then load the shared charter and the persona prompts.</p>
+    <div class="ref">Chapter 5 · page 16 · Appendix A · page 89</div></div></article>
+
+  <article class="q"><span class="n">03</span><div>
+    <h3>Which advisor should I use for my problem?</h3>
+    <p>Start from each advisor's core question. "Why is this worth doing?" goes to Vision; "Who can block this?" to Stakeholders; "Can the business run at go-live?" to Readiness; "Are people actually adopting it?" to Analytics. If the question spans disciplines, take it to the <b>Board Chair</b>, which routes it to the right advisors.</p>
+    <div class="ref">Chapter 3 · page 11</div></div></article>
+
+  <article class="q"><span class="n">04</span><div>
+    <h3>How do the four operating modes differ, and where do I start?</h3>
+    <ul>
+      <li><b>Solo advisor:</b> one expert drafts one deliverable.</li>
+      <li><b>Cross-functional:</b> two to four advisors work a shared problem.</li>
+      <li><b>Board challenge:</b> advisors independently give the strongest case for and against, and the evidence that would settle it.</li>
+      <li><b>End-to-end:</b> the board guides you from discovery to sustained adoption.</li>
+    </ul>
+    <p>Start with solo and widen the scope as your confidence grows.</p>
+    <div class="ref">Chapter 7 · page 25</div></div></article>
+
+  <article class="q"><span class="n">05</span><div>
+    <h3>What does the Board Chair do? Is it an eleventh advisor?</h3>
+    <p>No. It is a coordinating function and the default mode you use to combine advice, settle conflicts between advisors, and prepare executive decisions. When Readiness says "not ready" and Hypercare says "launch with extra support," the Chair sets out both cases and names the decision the sponsor must make.</p>
+    <div class="ref">Chapter 8 · page 28</div></div></article>
+
+  <article class="q"><span class="n">06</span><div>
+    <h3>Can I trust what the board produces?</h3>
+    <p>Only after you validate it. The charter forbids made-up facts, figures, baselines, and leader commitments. Advisors separate facts from assumptions and use <b>[placeholders]</b> when data is missing. Step 4 of the workflow, <b>lead validates with real data</b>, is required, and each advisor chapter ends with a quality checklist to run before anything goes to a client.</p>
+    <div class="ref">Chapters 5, 6, and 21 · pages 16, 22, and 80</div></div></article>
+
+  <article class="q"><span class="n">07</span><div>
+    <h3>What about client data and confidentiality?</h3>
+    <p>Share only what you need, anonymize where you can, and follow your firm's and the client's policies, including privacy and data-residency requirements. Never paste sensitive personal data into prompts. Agree your firm's position on disclosing AI assistance to clients before any pilot.</p>
+    <div class="ref">Chapter 22 · page 84</div></div></article>
+
+  <article class="q"><span class="n">08</span><div>
+    <h3>What can't the board do?</h3>
+    <p>With prompts alone there is no parallel execution, scheduled monitoring, automated handoffs, or persistent shared files. One conversation or custom assistant can simulate all four modes, but true orchestration needs an extra technology layer. The roadmap adds that layer only if the pilot shows it is worth the cost.</p>
+    <div class="ref">Chapters 22–23 · pages 84 and 86</div></div></article>
+
+  <article class="q"><span class="n">09</span><div>
+    <h3>How do we know whether it's working?</h3>
+    <p>Test each advisor against eight scenarios: ambiguous request, incomplete data, conflicting priorities, executive deliverable, detailed working artifact, cross-advisor request, critical challenge, and follow-up changes. Then run cross-advisor tests for resistance, readiness gaps, and a difficult go-live. Score against three measures:</p>
+    <ul>
+      <li><b>Quality:</b> sound and defensible.</li>
+      <li><b>Consistency:</b> compatible assumptions across advisors.</li>
+      <li><b>Practical value:</b> faster, better decisions.</li>
+    </ul>
+    <div class="ref">Chapter 21 · page 80</div></div></article>
+
+  <article class="q"><span class="n">10</span><div>
+    <h3>How do we roll this out, and what's being asked for now?</h3>
+    <p>Five phases: <span class="tag" style="background:var(--gC)">Now</span> define and configure, then test the specialists; <span class="tag" style="background:var(--gA)">Next</span> test collaboration, then build reusable assets; <span class="tag" style="background:#7a6f65">Later</span> orchestrate, only if the value justifies it. The 30-day ERP plan in Chapter 19 doubles as the pilot script.</p>
+    <div class="ref">Chapters 19 and 23 · pages 71 and 86</div></div></article>
+
+  <div class="closing">
+    <p>Decision requested: <b>approve a pilot</b> on a [fictional or real] engagement.</p>
+    <div class="src">The Agentic Board of Change Advisors<br>Operating playbook · October 2026</div>
+  </div>
+</main>
+</body></html>
