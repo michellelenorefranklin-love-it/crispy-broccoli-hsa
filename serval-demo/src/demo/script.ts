@@ -1,4 +1,5 @@
 import { useDemo } from '../store/store'
+import { steps as speakerSteps } from './speakerScript'
 
 export interface Notes {
   question: string
@@ -97,6 +98,7 @@ export const routeNotes: Record<string, Notes> = {
 }
 
 export interface DemoStep {
+  id: string
   act: number
   actTitle: string
   title: string
@@ -113,91 +115,92 @@ const S = () => useDemo.getState()
 
 export const demoSteps: DemoStep[] = [
   {
-    act: 1, actTitle: 'The current-state problem', title: 'Today: five teams, no status, repeated questions', route: '/current-state', minutes: 1,
+    id: 'current-state', act: 1, actTitle: 'The current-state problem', title: 'Today: five teams, no status, repeated questions', route: '/current-state', minutes: 1,
     say: 'Before we show the future, here’s a hypothesis about today. Jordan, a new analyst, has to chase five teams to get set up.',
     points: ['Label: hypotheses to validate in discovery.', 'Ask the room: “Does this match what you see? What makes you believe that?”'],
     question: 'Why change?',
   },
   {
-    act: 2, actTitle: 'The future-state experience', title: 'Jordan asks for help getting started', route: '/employee', minutes: 1,
+    id: 'employee', act: 2, actTitle: 'The future-state experience', title: 'Jordan asks for help getting started', route: '/employee', minutes: 1,
     say: 'Same person, same day 3. Jordan asks one question in plain language.',
     points: ['Point to the status strip: understood → checked policy → proposed → approval needed.', 'Note the action badge: “Initiate workflow”, not “Execute”.', 'Turn on Behind the scenes.'],
     question: 'What will this feel like for employees?',
     action: { label: 'Ask “Help me get started”', run: () => { S().set({ behindScenes: true }); S().send('Help me get started') } },
   },
   {
-    act: 2, actTitle: 'The future-state experience', title: 'The checklist, live on the onboarding timeline', route: '/onboarding', minutes: 0.5,
+    id: 'onboarding', act: 2, actTitle: 'The future-state experience', title: 'The checklist, live on the onboarding timeline', route: '/onboarding', minutes: 0.5,
     say: 'Everything the assistant did is reflected on the onboarding timeline: FinReport is pending Alex’s approval, the laptop is flagged as a bottleneck.',
     points: ['Click a step to show owner, control, and linked change intervention.'],
     question: 'How is onboarding coordinated?',
   },
   {
-    act: 3, actTitle: 'Controlled access', title: 'Standard request: Alex approves in Teams', route: '/access?scenario=standard', minutes: 1,
+    id: 'access-standard', act: 3, actTitle: 'Controlled access', title: 'Standard request: Alex approves in Teams', route: '/access?scenario=standard', minutes: 1,
     say: 'Now the part that matters most for a financial services firm: who actually decides.',
     points: ['Show the three columns: what AI does, what’s automated under policy, what stays with a human.', 'Switch to Alex, approve, and watch Jordan’s status and the audit trail update.'],
     question: 'Can AI grant access?',
     enter: () => { S().submitAccess('standard', 'assistant'); S().set({ approverView: 'alex' }) },
   },
   {
-    act: 3, actTitle: 'Controlled access', title: 'Blocked: segregation-of-duties conflict', route: '/access?scenario=blocked', minutes: 1,
+    id: 'access-blocked', act: 3, actTitle: 'Controlled access', title: 'Blocked: segregation-of-duties conflict', route: '/access?scenario=blocked', minutes: 1,
     say: 'Jordan now asks for payments release. The assistant can’t, and says why in plain language.',
     points: ['It stops before submission, routes to IAM, and offers alternatives.', 'Switch to Marcus (IAM): only a human can uphold or review. No path grants the conflicting role.'],
     question: 'What happens when someone asks for something they shouldn’t have?',
-    enter: () => { S().submitAccess('blocked', 'assistant'); S().set({ approverView: 'marcus' }) },
+    enter: () => S().set({ approverView: 'marcus' }),
+    action: { label: 'Ask for payments-release access', run: () => { S().set({ approverView: 'marcus' }); S().send('Can you give me access to the payments release system too?') } },
   },
   {
-    act: 4, actTitle: 'IT support', title: 'VPN: guided fix or escalation with context', route: '/support?scenario=vpn', minutes: 0.75,
+    id: 'support-vpn', act: 4, actTitle: 'IT support', title: 'VPN: guided fix or escalation with context', route: '/support?scenario=vpn', minutes: 0.75,
     say: 'Jordan’s VPN fails. The assistant uses device context and knowledge, and flags that the article is 14 months old.',
     points: ['Choose “Still not connecting” to show the diagnostic, the failed renewal, and INC0091734.', 'No silent failure.'],
     question: 'What happens when automation fails?',
     action: { label: 'Ask about the VPN', run: () => S().send('My VPN isn’t connecting') },
   },
   {
-    act: 4, actTitle: 'IT support', title: 'High-risk: possible compromise goes to Security', route: '/support?scenario=security&view=console', minutes: 0.75,
+    id: 'support-security', act: 4, actTitle: 'IT support', title: 'High-risk: possible compromise goes to Security', route: '/support?scenario=security&view=console', minutes: 0.75,
     say: 'A different kind of request. The assistant recognises a possible compromise and stops self-service.',
     points: ['P1 to Security Operations with clear instructions for Jordan.', 'Priya’s console shows AI summaries, escalation reasons, and human review. Her role shifts; it doesn’t disappear.'],
     question: 'What does the service desk do now?',
     action: { label: 'Report the suspicious MFA prompt', run: () => S().send('I got a weird MFA prompt I didn’t trigger and now FinReport looks different') },
   },
   {
-    act: 5, actTitle: 'Behind the scenes', title: 'Who owns it, who can build it', route: '/workflow?tab=model', minutes: 0.5,
+    id: 'wf-model', act: 5, actTitle: 'Behind the scenes', title: 'Who owns it, who can build it', route: '/workflow?tab=model', minutes: 0.5,
     say: 'Behind each of those interactions is a workflow with a named owner. Here’s the proposed federated model.',
     points: ['Governance largely owned by process teams, as you told us.', 'Central team owns guardrails and release controls.'],
     question: 'Who owns the workflows?',
   },
   {
-    act: 5, actTitle: 'Behind the scenes', title: 'Proportionate review lanes', route: '/workflow?tab=lanes', minutes: 0.5,
+    id: 'wf-lanes', act: 5, actTitle: 'Behind the scenes', title: 'Proportionate review lanes', route: '/workflow?tab=lanes', minutes: 0.5,
     say: 'Bottlenecks come from unclear decision rights, not from controls. Three lanes, scaled to risk.',
     points: ['Fast lane for Low tier; Enhanced for privileged and sensitive work.', 'Bottleneck radar shows where work queues.'],
     question: 'How do we limit bottlenecks?',
   },
   {
-    act: 5, actTitle: 'Behind the scenes', title: 'Team Onboarding: HR Ops joins as builders', route: '/workflow?tab=onboarding', minutes: 0.5,
+    id: 'wf-onboarding', act: 5, actTitle: 'Behind the scenes', title: 'Team Onboarding: HR Ops joins as builders', route: '/workflow?tab=onboarding', minutes: 0.5,
     say: 'Onboarding a team is a use case in its own right: define needs, assign roles, train, communicate, build, release, own.',
     points: ['Builder certification gates build rights.', 'Every workflow has a named owner and a 90-day review.'],
     question: 'How do teams get onto the platform?',
   },
   {
-    act: 6, actTitle: 'The human change journey', title: 'Same workflow, with and without OCM', route: '/change?tab=failure', minutes: 0.75,
+    id: 'change-failure', act: 6, actTitle: 'The human change journey', title: 'Same workflow, with and without OCM', route: '/change?tab=failure', minutes: 0.75,
     say: 'A workflow can work technically and still fail operationally. Toggle OCM off.',
     points: ['Without OCM: colleagues still grant access informally, approvals stall in inboxes, builders ship without owners.', 'With OCM: adoption climbs, workarounds fall, ownership is clear.'],
     question: 'Why invest in change management?',
     enter: () => S().set({ ocmOn: false }),
   },
   {
-    act: 6, actTitle: 'The human change journey', title: 'Comms and learning paths, ready to edit', route: '/change?tab=comms', minutes: 0.75,
+    id: 'change-comms', act: 6, actTitle: 'The human change journey', title: 'Comms and learning paths, ready to edit', route: '/change?tab=comms', minutes: 0.75,
     say: 'The comms and learning are drafted already. Managers get a briefing; builders get more than tool training.',
     points: ['Drafts are illustrative and need Client review.', 'Copy any draft to the clipboard.'],
     question: 'What will we send, and to whom?',
   },
   {
-    act: 7, actTitle: 'Value, risk, and decisions', title: 'Value with balancing metrics', route: '/value', minutes: 0.75,
+    id: 'value', act: 7, actTitle: 'Value, risk, and decisions', title: 'Value with balancing metrics', route: '/value', minutes: 0.75,
     say: 'Value is measured in-platform and validated by the business. Every efficiency metric is paired with a balancing metric.',
     points: ['Edit an assumption live. Formulas are visible.', 'Never converted to headcount.'],
     question: 'How will we know it’s working?',
   },
   {
-    act: 7, actTitle: 'Value, risk, and decisions', title: 'Decisions, owners, next steps', route: '/decisions', minutes: 0.75,
+    id: 'decisions', act: 7, actTitle: 'Value, risk, and decisions', title: 'Decisions, owners, next steps', route: '/decisions', minutes: 0.75,
     say: 'Here are the action items: the decisions only you can make, what to validate, and a recommended pilot path.',
     points: ['Agree owners for the top three decisions before leaving the room.'],
     question: 'What do we do next?',
@@ -205,3 +208,5 @@ export const demoSteps: DemoStep[] = [
 ]
 
 export const demoMinutes = demoSteps.reduce((a, s) => a + s.minutes, 0)
+
+export const speakerFor = (id: string) => speakerSteps.find((s) => s.id === id)

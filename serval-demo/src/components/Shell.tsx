@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import {
   UserRound, CalendarCheck, KeyRound, LifeBuoy, Workflow, Users, BarChart3, Network, Play, RotateCcw,
-  StickyNote, Tag, AArrowUp, AArrowDown, FlaskConical, ChevronLeft, ChevronRight, X, ListChecks, History,
+  StickyNote, Tag, AArrowUp, AArrowDown, FlaskConical, ChevronLeft, ChevronRight, X, ListChecks, History, FileText,
 } from 'lucide-react'
 import { useDemo } from '../store/store'
 import { clientConfig } from '../config/client'
 import { cn } from '../lib/util'
-import { demoSteps, routeNotes, demoMinutes } from '../demo/script'
+import { demoSteps, routeNotes, demoMinutes, speakerFor } from '../demo/script'
 import { Button } from './ui'
 
 const sections = [
@@ -111,6 +111,11 @@ function DemoBar() {
   )
 }
 
+export const openSpeakerScript = () => {
+  const base = window.location.href.split('#')[0]
+  window.open(`${base}#/speaker-script`, 'speaker-script')
+}
+
 function NotesDrawer() {
   const open = useDemo((s) => s.notesOpen)
   const demo = useDemo((s) => s.demo)
@@ -118,23 +123,42 @@ function NotesDrawer() {
   const loc = useLocation()
   if (!open) return null
   const step = demo.active ? demoSteps[demo.step] : null
+  const sp = step ? speakerFor(step.id) : undefined
   const rn = routeNotes[loc.pathname]
-  const title = step ? step.title : 'Presenter notes'
+  const title = step ? `Step ${demo.step + 1} · ${step.title}` : 'Presenter notes'
   const question = step ? step.question : rn?.question
-  const points = step ? [step.say, ...step.points] : rn?.points ?? ['No notes for this screen.']
+  const points = step ? step.points : rn?.points ?? ['No notes for this screen.']
   return (
-    <aside className="fixed right-3 top-[6.5rem] z-40 w-[22rem] rounded-lg border border-slate-200 bg-white shadow-pop" aria-label="Presenter notes">
-      <header className="flex items-center justify-between border-b border-slate-100 px-3.5 py-2.5">
-        <p className="flex items-center gap-1.5 text-sm font-semibold text-ink-900"><StickyNote size={14} /> {title}</p>
+    <aside className="fixed right-3 top-[6.5rem] z-40 flex max-h-[calc(100vh-13rem)] w-[24rem] flex-col rounded-lg border border-slate-200 bg-white shadow-pop" aria-label="Presenter notes">
+      <header className="flex items-center justify-between gap-2 border-b border-slate-100 px-3.5 py-2.5">
+        <p className="flex min-w-0 items-center gap-1.5 text-sm font-semibold text-ink-900"><StickyNote size={14} className="shrink-0" /> <span className="truncate">{title}</span></p>
         <Button size="sm" variant="ghost" onClick={() => setS({ notesOpen: false })} aria-label="Close notes"><X size={14} /></Button>
       </header>
-      <div className="space-y-2.5 px-3.5 py-3 text-sm">
+      <div className="scroll-thin space-y-3 overflow-y-auto px-3.5 py-3 text-sm">
         {question && <p className="rounded bg-accent-50 px-2 py-1.5 text-[0.82rem] text-accent-700"><span className="font-semibold">Answers:</span> {question}</p>}
         {!step && rn && <p className="text-[0.75rem] text-slate-500">For: {rn.audience}</p>}
-        <ul className="space-y-1.5">
-          {points.map((p, i) => <li key={i} className="flex gap-2 text-[0.85rem] text-slate-700"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-slate-400" />{p}</li>)}
-        </ul>
-        <p className="border-t border-slate-100 pt-2 text-[0.72rem] text-slate-400">Press P to toggle. In the guided demo: → next, ← back, Esc exits.</p>
+        {sp ? (
+          <>
+            <div>
+              <p className="mb-1 text-[0.68rem] font-semibold uppercase tracking-wide text-slate-500">Do · ~{sp.seconds}s</p>
+              <ol className="list-decimal space-y-1 pl-4 text-[0.82rem] text-slate-700">{sp.clicks.map((c, i) => <li key={i}>{c}</li>)}</ol>
+            </div>
+            <div>
+              <p className="mb-1 text-[0.68rem] font-semibold uppercase tracking-wide text-slate-500">Say</p>
+              <div className="space-y-1.5 border-l-2 border-accent-200 pl-2.5 text-[0.85rem] text-ink-900">{sp.script.map((t, i) => <p key={i}>{t}</p>)}</div>
+            </div>
+            {sp.transition && <p className="text-[0.82rem] italic text-slate-600">Next → “{sp.transition}”</p>}
+            {sp.qa?.map((q) => <p key={q.q} className="rounded bg-slate-50 px-2 py-1.5 text-[0.78rem] text-slate-600"><span className="font-semibold text-slate-700">If asked: {q.q}</span> {q.a}</p>)}
+          </>
+        ) : (
+          <ul className="space-y-1.5">
+            {points.map((p, i) => <li key={i} className="flex gap-2 text-[0.85rem] text-slate-700"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-slate-400" />{p}</li>)}
+          </ul>
+        )}
+        <div className="flex items-center justify-between gap-2 border-t border-slate-100 pt-2">
+          <p className="text-[0.72rem] text-slate-400">P toggles · → next · ← back · Esc exits</p>
+          <button type="button" onClick={openSpeakerScript} className="inline-flex items-center gap-1 text-[0.75rem] font-medium text-accent-700 hover:underline"><FileText size={12} /> Full speaker script</button>
+        </div>
       </div>
     </aside>
   )
@@ -219,6 +243,9 @@ export function Shell() {
           ))}
           <div className="mt-6 rounded-md border border-slate-200 bg-slate-50 p-2.5 text-[0.72rem] text-slate-500">
             Guided demo: {demoSteps.length} steps, ~{Math.round(demoMinutes)} min. Keys: → ← Esc, P for notes.
+            <button type="button" onClick={openSpeakerScript} className="mt-1.5 flex items-center gap-1 font-medium text-accent-700 hover:underline">
+              <FileText size={12} /> Open speaker script
+            </button>
           </div>
         </nav>
         <main id="main" className={cn('scroll-thin min-w-0 flex-1 overflow-y-auto', demo.active && 'pb-24')}>

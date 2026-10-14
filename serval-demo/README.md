@@ -38,6 +38,7 @@ Copy `dist/index.html` to a USB stick as a fallback. It needs nothing else.
 | `npm run typecheck` | TypeScript check |
 | `npm run lint` | ESLint |
 | `npm run build` | Typecheck + static single-file build |
+| `npm run docs:script` | Regenerate DEMO_SCRIPT.md from `src/demo/speakerScript.ts` |
 
 ## Presenting
 
@@ -53,7 +54,15 @@ Copy `dist/index.html` to a USB stick as a fallback. It needs nothing else.
 
 State persists in the browser (localStorage), so an accidental refresh keeps the story. Reset clears it.
 
-See **[DEMO_SCRIPT.md](DEMO_SCRIPT.md)** for the click-by-click talk track.
+### Speaker script
+
+The word-for-word talk track, with the exact clicks for every step, exists in three synced forms:
+
+- **Inside the demo:** press **P** during the guided demo. The notes panel shows *Do* (clicks), *Say* (script), the transition line, and likely questions for the current step.
+- **Printable page:** click **Open speaker script** (left sidebar, or *Full speaker script* in the notes panel). It opens `#/speaker-script` in a second window: put it on your laptop screen while the projector shows the demo, or click **Print**. A ready-made PDF is in **[Speaker-Script.pdf](Speaker-Script.pdf)**.
+- **Markdown:** **[DEMO_SCRIPT.md](DEMO_SCRIPT.md)**
+
+All three come from `src/demo/speakerScript.ts`. After editing that file, run `npm run docs:script` to regenerate `DEMO_SCRIPT.md`.
 
 ## Customise for a client
 
@@ -77,7 +86,7 @@ Edit **`src/config/client.ts`**: client name (default "the Client"), short wordm
 
 - [SPEC.md](SPEC.md): build brief
 - [PLAN.md](PLAN.md): architecture and build phases
-- [DEMO_SCRIPT.md](DEMO_SCRIPT.md): 10-minute talk track
+- [DEMO_SCRIPT.md](DEMO_SCRIPT.md) / [Speaker-Script.pdf](Speaker-Script.pdf): word-for-word speaker script with clicks, timings, Q&A, and recovery
 - [ASSUMPTIONS.md](ASSUMPTIONS.md): assumptions and known limitations
 - [VALIDATION_QUESTIONS.md](VALIDATION_QUESTIONS.md): questions for the Client, Serval, and the ServiceNow platform team
 - [PILOT_NEXT_STEPS.md](PILOT_NEXT_STEPS.md): path from POC to a controlled pilot
@@ -93,5 +102,6 @@ src/
   engine/assistant.ts   deterministic scripted assistant
   components/           UI kit, shell, assistant panel
   demo/script.ts        guided demo steps + presenter notes
+  demo/speakerScript.ts speaker script (source for notes, #/speaker-script, DEMO_SCRIPT.md)
   pages/                one file (or folder) per section
 ```

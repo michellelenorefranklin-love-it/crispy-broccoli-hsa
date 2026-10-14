@@ -10,11 +10,13 @@ import Value from './pages/Value'
 import Architecture from './pages/Architecture'
 import CurrentState from './pages/CurrentState'
 import Decisions from './pages/Decisions'
+import SpeakerScript from './pages/SpeakerScript'
 
 export default function App() {
   return (
     <HashRouter>
       <Routes>
+        <Route path="/speaker-script" element={<SpeakerScript />} />
         <Route element={<Shell />}>
           <Route index element={<Navigate to="/employee" replace />} />
           <Route path="/employee" element={<EmployeeExperience />} />
