@@ -8,7 +8,7 @@ import { ActionBadge, Badge, Prov, RiskBadge, Toggle } from './ui'
 
 function ReasoningStrip({ steps }: { steps: ReasonStep[] }) {
   return (
-    <ol className="mt-2 grid grid-cols-2 gap-1 sm:grid-cols-3 xl:grid-cols-6" aria-label="What the assistant did">
+    <ol className="mt-2 grid grid-cols-2 gap-1 sm:grid-cols-3 2xl:grid-cols-6" aria-label="What the assistant did">
       {steps.map((s, i) => {
         const Icon = s.status === 'done' ? Check : s.status === 'needed' ? AlertTriangle : s.status === 'stopped' ? OctagonX : MinusCircle
         const c = s.status === 'done' ? 'text-ok-600' : s.status === 'needed' ? 'text-warn-600' : s.status === 'stopped' ? 'text-bad-600' : 'text-slate-400'

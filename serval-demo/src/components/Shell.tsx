@@ -66,6 +66,8 @@ export function goStep(i: number, nav: (to: string) => void) {
   nav(demoSteps[step].route)
 }
 
+const barBtn = 'inline-flex h-7 items-center gap-1.5 rounded-md px-2.5 text-[0.8rem] font-medium text-slate-100 hover:bg-white/10'
+
 function DemoBar() {
   const demo = useDemo((s) => s.demo)
   const setS = useDemo((s) => s.set)
@@ -95,14 +97,14 @@ function DemoBar() {
               <Play size={13} /> {step.action.label}
             </Button>
           )}
-          <Button size="sm" variant="ghost" className="text-slate-200 hover:bg-white/10 hover:text-white" onClick={() => setS({ notesOpen: !useDemo.getState().notesOpen })}>
+          <button type="button" className={barBtn} onClick={() => setS({ notesOpen: !useDemo.getState().notesOpen })}>
             <StickyNote size={14} /> Notes (P)
-          </Button>
+          </button>
           <Button size="sm" variant="secondary" disabled={demo.step === 0} onClick={() => goStep(demo.step - 1, nav)}><ChevronLeft size={14} /> Back</Button>
           <Button size="sm" variant="secondary" disabled={demo.step === demoSteps.length - 1} onClick={() => goStep(demo.step + 1, nav)}>Next <ChevronRight size={14} /></Button>
-          <Button size="sm" variant="ghost" className="text-slate-200 hover:bg-white/10 hover:text-white" onClick={() => setS({ demo: { active: false, step: demo.step } })} aria-label="Exit guided demo (Esc)">
+          <button type="button" className={barBtn} onClick={() => setS({ demo: { active: false, step: demo.step } })} aria-label="Exit guided demo (Esc)">
             <X size={14} /> Exit
-          </Button>
+          </button>
         </div>
       </div>
     </div>

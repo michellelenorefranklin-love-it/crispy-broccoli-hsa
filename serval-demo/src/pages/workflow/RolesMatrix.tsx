@@ -14,10 +14,10 @@ export function RolesMatrix() {
   const level = (r: string, t: string) => permissionMatrix.find((p) => p.roleId === r && p.teamId === t)?.level ?? 'None'
 
   return (
-    <div className="grid gap-4 xl:grid-cols-[1fr_360px]">
+    <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
       <Card title="Permission matrix" subtitle="Roles × teams. Select a role for its full definition." actions={<Prov kind="validate" />} bodyClass="p-0">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[680px] text-sm">
+          <table className="w-full min-w-[600px] text-sm">
             <thead>
               <tr className="border-b border-slate-200 text-left text-[0.72rem] uppercase tracking-wide text-slate-500">
                 <th className="px-4 py-2 font-medium">Role</th>

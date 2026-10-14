@@ -5,6 +5,7 @@ A 103-page playbook that turns the executive deck *The Agentic Board of Organiza
 - **Read it:** [`playbook/Agentic-Board-OCM-Playbook.pdf`](playbook/Agentic-Board-OCM-Playbook.pdf)
 - **Explore it:** interactive site at [`playbook/site/index.html`](playbook/site/index.html), published as a private claude.ai artifact that includes the PDF
 - **Demo it:** the Change Advisory Board Room app at [`app/index.html`](app/index.html), a working board session with live AI advisors (on claude.ai) or a recorded sample
+- **Serval AI demo:** a separate, offline client demo — *Future of Work | AI Employee Experience* (Serval AI + ServiceNow) — lives in [`serval-demo/`](serval-demo/README.md)
 - **Edit it:** one Markdown file per chapter in [`playbook/chapters/`](playbook/chapters/)
 - **Source and plan:** [`SOURCE-BRIEF.md`](playbook/SOURCE-BRIEF.md) (what the deck says), [`OUTLINE.md`](playbook/OUTLINE.md) (chapter plan), [`STYLE.md`](playbook/STYLE.md) (writing rules)
 

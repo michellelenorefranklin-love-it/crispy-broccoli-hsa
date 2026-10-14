@@ -83,6 +83,7 @@ export interface DemoState {
   updateIncident: (id: string, patch: Partial<Incident>) => void
   updateWorkflow: (id: string, patch: Partial<WorkflowDefinition>) => string | null
   addWorkflow: (wf: WorkflowDefinition) => void
+  removeWorkflow: (id: string) => void
   setTeamOnb: (patch: Partial<TeamOnboardingState>) => void
   completeTeamStep: (id: string) => void
   updateImpact: (stakeholderId: string, useCase: ChangeImpact['useCase'], patch: Partial<ChangeImpact>) => void
@@ -329,6 +330,8 @@ export const useDemo = create<DemoState>()(
         set((s) => ({ workflows: [wf, ...s.workflows.filter((w) => w.id !== wf.id)] }))
         get().log({ actor: 'Workflow Studio', actorType: 'AI agent', action: 'Generated deterministic workflow from description (sandbox)', object: wf.name, system: 'Serval' })
       },
+
+      removeWorkflow: (id) => set((s) => ({ workflows: s.workflows.filter((w) => w.id !== id) })),
 
       setTeamOnb: (patch) => set((s) => ({ teamOnb: { ...s.teamOnb, ...patch } })),
       completeTeamStep: (id) => {

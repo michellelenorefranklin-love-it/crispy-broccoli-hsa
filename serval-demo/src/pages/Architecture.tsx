@@ -114,7 +114,7 @@ export default function Architecture() {
       type="button"
       onClick={() => setSel(id)}
       aria-pressed={sel === id}
-      className={cn('flex w-full items-center justify-between gap-2 rounded-lg border bg-white px-3 py-2.5 text-left text-sm transition-colors',
+      className={cn('flex w-full flex-col items-start gap-1 rounded-lg border bg-white px-3 py-2 text-left text-sm transition-colors',
         sel === id ? 'border-accent-600 ring-1 ring-accent-600' : 'border-slate-200 hover:border-slate-300')}
     >
       <span className="flex items-center gap-2 font-medium text-ink-900">{icon}{info[id].title}</span>
@@ -161,7 +161,7 @@ export default function Architecture() {
               <Side id="monitoring" icon={<Activity size={14} className="text-slate-500" />} />
               <Side id="humans" icon={<Users size={14} className="text-slate-500" />} />
               <div className="mt-3 rounded-lg bg-slate-50 p-3">
-                <div className="flex items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-1">
                   <p className="font-semibold text-ink-900">{info[sel].title}</p>
                   <Prov kind={info[sel].prov} />
                 </div>
