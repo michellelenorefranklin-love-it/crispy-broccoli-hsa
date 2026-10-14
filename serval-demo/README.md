@@ -38,6 +38,7 @@ Copy `dist/index.html` to a USB stick as a fallback. It needs nothing else.
 | `npm run typecheck` | TypeScript check |
 | `npm run lint` | ESLint |
 | `npm run build` | Typecheck + static single-file build |
+| `npm run video` | Record a captioned walkthrough video → `video/` (needs Playwright + ffmpeg) |
 | `npm run docs:script` | Regenerate DEMO_SCRIPT.md from `src/demo/speakerScript.ts` |
 
 ## Presenting
@@ -90,6 +91,7 @@ Edit **`src/config/client.ts`**: client name (default "the Client"), short wordm
 - [ASSUMPTIONS.md](ASSUMPTIONS.md): assumptions and known limitations
 - [VALIDATION_QUESTIONS.md](VALIDATION_QUESTIONS.md): questions for the Client, Serval, and the ServiceNow platform team
 - [PILOT_NEXT_STEPS.md](PILOT_NEXT_STEPS.md): path from POC to a controlled pilot
+- [SHARING.md](SHARING.md): how to share it (link, file, hosting, screen share, video)
 
 ## Code map
 
