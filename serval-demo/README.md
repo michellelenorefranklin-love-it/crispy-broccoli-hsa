@@ -44,7 +44,7 @@ Copy `dist/index.html` to a USB stick as a fallback. It needs nothing else.
 
 | Control | Where | What it does |
 |---|---|---|
-| **Start Executive Demo** | Top bar | Guided 14-step, 7-act walkthrough (~10 min). Each step can run its own action (e.g. "Ask 'Help me get started'") |
+| **Start Executive Demo** | Top bar | Guided 14-step, 7-act walkthrough (~11 min). Each step can run its own action (e.g. "Ask 'Help me get started'") |
 | **→ / ←** | Keyboard (in guided demo) | Next / previous step |
 | **Esc** | Keyboard | Exit the guided demo (closes a drawer first if one is open) |
 | **P** | Keyboard | Toggle presenter notes (talking points + the client question each screen answers) |
