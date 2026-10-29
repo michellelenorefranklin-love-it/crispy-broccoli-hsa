@@ -30,3 +30,7 @@ python3 playbook/build/build.py
 ```
 
 The build script turns the chapters into styled HTML, renders it with Chromium, and makes a second pass to fill in the contents page numbers.
+
+## Maryland data center strategy report
+
+A CEO- and board-ready consulting report on power procurement and customer acquisition for a new Maryland data center: [`maryland-data-center/Maryland-Data-Center-Strategy-Report.md`](maryland-data-center/Maryland-Data-Center-Strategy-Report.md). It covers the market, a ranked power-options matrix, target customers, pre-leasing, scenario financials, a 24-month roadmap, KPIs and a risk register, with sources and a diligence list.
