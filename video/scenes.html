@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Agentic Board — 60-second video</title>
+<link rel="stylesheet" href="../playbook/build/fonts.css">
+<style>
+:root{--forest:#002313;--forest2:#0B3322;--cream:#F2F0ED;--creamM:#B9C7BF;--mint:#4CDD84;--teal:#287079;--tealT:#1F5F67;--green:#187E3E;--red:#FF462D;--grey:#3D3B3B;--ink:#002313;--muted:#55615B;--line:#D6D0C9}
+*{box-sizing:border-box;margin:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--forest)}
+body{font-family:'IBM Plex Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.scene{position:absolute;inset:0;opacity:0;overflow:hidden}
+.dark{background:var(--forest);color:var(--cream)}
+.dark::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 70% at 75% 40%,rgba(76,221,132,.13),transparent 70%)}
+.light{background:var(--cream);color:var(--ink)}
+.serif{font-family:'Source Serif 4',Georgia,serif}
+.kicker{font-size:24px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mint)}
+.light .kicker{color:var(--tealT)}
+.bar{height:10px;background:var(--red);border-radius:5px}
+.abs{position:absolute}
+.chip{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;font-weight:600;color:var(--cream);font-size:24px;padding:10px 22px;white-space:nowrap}
+.gA{background:var(--teal)}.gB{background:var(--grey)}.gC{background:var(--green)}.gD{background:var(--red);color:var(--forest)}
+.progress{position:absolute;left:0;bottom:0;height:6px;background:var(--mint);z-index:50}
+.frame{position:absolute;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+.frame .chrome{height:44px;background:#E7E3DE;display:flex;align-items:center;gap:10px;padding:0 18px}
+.frame .chrome i{width:14px;height:14px;border-radius:50%;background:#C9C2BA;display:block}
+.frame .chrome span{margin-left:16px;background:#fff;border-radius:8px;height:26px;flex:1;max-width:620px;font-size:15px;color:#6b6b6b;display:flex;align-items:center;padding:0 12px}
+.frame .view{position:absolute;top:44px;left:0;right:0;bottom:0;overflow:hidden}
+.frame .view img{position:absolute;left:0;top:0;width:100%;transform-origin:0 0}
+.page{position:absolute;border-radius:6px;box-shadow:0 30px 70px -20px rgba(0,0,0,.65);overflow:hidden;background:#fff}
+.page img{display:block;width:100%}
+.step{position:absolute;top:560px;width:300px;height:250px;border-radius:22px;background:#fff;border:3px solid var(--line);padding:30px 28px;display:flex;flex-direction:column;gap:10px}
+.step .w{font-size:19px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.step .n{font-family:'Source Serif 4',serif;font-size:64px;font-weight:600;color:var(--ink);line-height:1}
+.step .t{font-size:28px;font-weight:600;color:var(--ink);line-height:1.2}
+.step::after{content:"";position:absolute;left:28px;right:28px;top:0;height:8px;border-radius:0 0 6px 6px}
+.step.h .w{color:var(--green)} .step.h::after{background:var(--mint)}
+.step.b .w{color:var(--tealT)} .step.b::after{background:var(--teal)}
+.node{position:absolute;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:34px;color:var(--cream)}
+.nlabel{position:absolute;width:220px;text-align:center;font-size:22px;font-weight:600;color:var(--creamM)}
+.bullet{display:flex;gap:20px;align-items:baseline;font-size:34px;line-height:1.3;color:var(--cream)}
+.bullet b{color:var(--mint);font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500}
+.cap{font-size:34px;line-height:1.35}
+</style></head><body>
+
+<!-- 1 Title -->
+<section class="scene dark" id="s1">
+  <div class="abs kicker" id="s1k" style="left:160px;top:250px">Organizational change management</div>
+  <div class="abs bar" id="s1bar" style="left:160px;top:310px;width:0"></div>
+  <h1 class="abs serif" id="s1t" style="left:160px;top:360px;width:1500px;font-size:118px;font-weight:600;line-height:1.04;color:var(--cream)">The Agentic Board of<br>Change Advisors</h1>
+  <p class="abs cap" id="s1s" style="left:160px;top:650px;width:1300px;color:var(--creamM);font-size:40px">An AI advisory board that coaches an OCM lead through every change discipline.</p>
+  <div class="abs" id="s1chips" style="left:160px;top:790px;width:1600px;display:flex;flex-wrap:wrap;gap:14px"></div>
+</section>
+
+<!-- 2 Problem -->
+<section class="scene light" id="s2">
+  <div class="abs kicker" style="left:160px;top:150px">The challenge</div>
+  <div class="abs serif" id="s2a" style="left:160px;top:210px;font-size:110px;font-weight:600">One OCM lead.</div>
+  <div class="abs serif" id="s2b" style="left:160px;top:340px;font-size:110px;font-weight:600">Ten disciplines.</div>
+  <div class="abs serif" id="s2c" style="left:160px;top:470px;font-size:110px;font-weight:600;color:#C2361F">No second opinion.</div>
+  <div class="abs" id="s2grid" style="left:160px;top:690px;width:1600px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px"></div>
+</section>
+
+<!-- 3 Board ring -->
+<section class="scene dark" id="s3">
+  <div class="abs" id="ring" style="left:0;top:0;width:1920px;height:1080px"></div>
+  <div class="abs" style="left:1130px;top:300px;width:700px;display:flex;flex-direction:column;gap:40px">
+    <div class="kicker">The idea</div>
+    <div class="serif" id="s3a" style="font-size:66px;font-weight:600;line-height:1.1">Ten specialist AI advisors</div>
+    <div class="serif" id="s3b" style="font-size:66px;font-weight:600;line-height:1.1">One Board Chair</div>
+    <div class="serif" id="s3c" style="font-size:66px;font-weight:600;line-height:1.1;color:var(--mint)">One shared charter</div>
+  </div>
+</section>
+
+<!-- 4 Workflow -->
+<section class="scene light" id="s4">
+  <div class="abs kicker" style="left:160px;top:150px">Human in the loop</div>
+  <div class="abs serif" id="s4h" style="left:160px;top:210px;width:1600px;font-size:76px;font-weight:600;line-height:1.12">The board analyzes, drafts, and challenges.<br><span style="color:var(--green)">The lead decides and delivers.</span></div>
+  <div id="s4steps"></div>
+  <div class="abs cap" id="s4cap" style="left:160px;top:880px;width:1600px;color:var(--muted)">Nothing reaches the client without the lead's judgment.</div>
+</section>
+
+<!-- 5 Playbook -->
+<section class="scene dark" id="s5">
+  <div class="abs" style="left:150px;top:230px;width:760px;display:flex;flex-direction:column;gap:30px">
+    <div class="kicker">The playbook</div>
+    <div class="serif" id="s5h" style="font-size:84px;font-weight:600;line-height:1.05">103 pages.<br>Ready to run.</div>
+    <div class="bullet" id="s5b1"><b>01</b><span>Context Brief, Operating Charter, response format</span></div>
+    <div class="bullet" id="s5b2"><b>02</b><span>Ten advisor playbooks with templates</span></div>
+    <div class="bullet" id="s5b3"><b>03</b><span>Prompts, quality tests, roadmap, and FAQ</span></div>
+  </div>
+  <div class="page" id="p1" style="width:540px"><img src="assets/pb-guard-017.jpg" alt=""></div>
+  <div class="page" id="p2" style="width:540px"><img src="assets/pb-adv-032.jpg" alt=""></div>
+  <div class="page" id="p3" style="width:560px"><img src="assets/pb-cover-001.jpg" alt=""></div>
+</section>
+
+<!-- 6 Site -->
+<section class="scene dark" id="s6">
+  <div class="abs" style="left:150px;top:120px;display:flex;flex-direction:column;gap:14px">
+    <div class="kicker">Explore it</div>
+    <div class="serif" id="s6h" style="font-size:64px;font-weight:600">An interactive guide and prompt builder</div>
+  </div>
+  <div class="frame" id="s6f" style="left:150px;top:300px;width:1620px;height:860px">
+    <div class="chrome"><i></i><i></i><i></i><span>Agentic Board Playbook</span></div>
+    <div class="view"><img id="s6i1" src="assets/site-hero.jpg" alt=""><img id="s6i2" src="assets/site-builder.jpg" alt=""></div>
+  </div>
+</section>
+
+<!-- 7 App -->
+<section class="scene dark" id="s7">
+  <div class="abs" style="left:150px;top:120px;display:flex;flex-direction:column;gap:14px">
+    <div class="kicker">Demo it live</div>
+    <div class="serif" id="s7h" style="font-size:64px;font-weight:600">The Change Advisory Board Room</div>
+  </div>
+  <div class="frame" id="s7f" style="left:150px;top:300px;width:1620px;height:860px">
+    <div class="chrome"><i></i><i></i><i></i><span>Change Advisory Board Room</span></div>
+    <div class="view"><img id="s7i" src="assets/app-session.jpg" alt=""></div>
+  </div>
+  <div class="abs" id="s7cap" style="left:150px;top:300px;width:620px;padding:30px 34px;border-radius:20px;background:var(--forest);border:2px solid var(--mint);display:flex;flex-direction:column;gap:14px">
+    <div id="s7l1" class="cap" style="color:var(--cream)">Convene the board</div>
+    <div id="s7l2" class="cap" style="color:var(--cream)">Validate every assumption</div>
+    <div id="s7l3" class="cap" style="color:var(--cream)">Log your decisions</div>
+    <div id="s7l4" class="cap" style="color:var(--mint)">Export the session</div>
+  </div>
+</section>
+
+<!-- 8 Close -->
+<section class="scene dark" id="s8">
+  <div class="abs serif" id="s8a" style="left:160px;top:250px;width:1600px;font-size:80px;font-weight:600;line-height:1.15">The lead frames.<br>The board advises and drafts.<br><span style="color:var(--mint)">The lead decides and delivers.</span></div>
+  <div class="abs bar" id="s8bar" style="left:160px;top:660px;width:0"></div>
+  <div class="abs" id="s8b" style="left:160px;top:700px;display:flex;flex-direction:column;gap:14px">
+    <div class="serif" style="font-size:52px;font-weight:600">The Agentic Board of Change Advisors</div>
+    <div style="font-size:30px;color:var(--creamM)">Michelle Franklin · Director, Organizational Change Management – US</div>
+  </div>
+  <div class="abs chip" id="s8c" style="left:160px;top:900px;background:var(--mint);color:var(--forest);font-size:30px;padding:16px 32px">Next step: approve a pilot</div>
+</section>
+
+<div class="progress" id="prog"></div>
+
+<script>
+const ADV=[['Vision','gA'],['Stakeholders','gA'],['Experience','gA'],['Readiness','gB'],['Impact & Risk','gB'],['Champions','gB'],['Communications','gC'],['Training','gC'],['Deployment','gC'],['Analytics','gD']];
+const COL={gA:'#287079',gB:'#3D3B3B',gC:'#187E3E',gD:'#FF462D'};
+const SC=[['s1',0,6],['s2',6,12.5],['s3',12.5,20.5],['s4',20.5,29],['s5',29,38],['s6',38,45.5],['s7',45.5,54],['s8',54,60]];
+const D=60, $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x)), seg=(t,a,b)=>cl((t-a)/(b-a));
+const io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, out=x=>1-Math.pow(1-x,3);
+const back=x=>{const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+function rise(el,p,dy=40){el.style.opacity=p;el.style.transform=`translateY(${(1-out(p))*dy}px)`;}
+
+// build static pieces
+$('s1chips').innerHTML=ADV.map(([n,g])=>`<span class="chip ${g}">${n}</span>`).join('')+'<span class="chip" style="background:var(--cream);color:var(--forest)">Board Chair</span>';
+$('s2grid').innerHTML=['Vision','Stakeholders','Experience','Readiness','Impact','Champions','Communications','Training','Hypercare','Metrics'].map(n=>`<div style="background:#fff;border:2px solid var(--line);border-radius:14px;padding:18px 20px;font-size:30px;font-weight:600;color:var(--ink)">${n}</div>`).join('');
+(function(){
+  const cx=560,cy=560,R=330; let h=`<svg class="abs" width="1920" height="1080" style="left:0;top:0"><circle id="chairRing" cx="${cx}" cy="${cy}" r="200" fill="none" stroke="rgba(242,240,237,.4)" stroke-width="3" stroke-dasharray="10 12"/>`;
+  ADV.forEach((a,i)=>{const th=(i*36-90)*Math.PI/180;h+=`<line id="sp${i}" x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(th)}" y2="${cy+R*Math.sin(th)}" stroke="rgba(242,240,237,.18)" stroke-width="3"/>`;});
+  h+=`</svg><div class="abs" id="chairLbl" style="left:${cx-150}px;top:${cy-262}px;width:300px;text-align:center;font-size:20px;letter-spacing:.2em;font-weight:600;color:var(--creamM)">BOARD CHAIR</div>`;
+  h+=`<div class="abs" id="lead" style="left:${cx-110}px;top:${cy-110}px;width:220px;height:220px;border-radius:50%;background:var(--mint);display:grid;place-items:center;text-align:center;color:var(--forest)"><div><div style="font-size:34px;font-weight:700">OCM lead</div><div style="font-size:20px;font-weight:500">decides and delivers</div></div></div>`;
+  ADV.forEach((a,i)=>{const th=(i*36-90)*Math.PI/180,x=cx+R*Math.cos(th),y=cy+R*Math.sin(th);const below=y>=cy-20;
+    h+=`<div class="node ${a[1]}" id="nd${i}" style="left:${x-48}px;top:${y-48}px;${a[1]==='gD'?'color:#002313':''}">${i+1}</div><div class="nlabel" id="nl${i}" style="left:${x-110}px;top:${below?y+56:y-88}px">${a[0]}</div>`;});
+  $('ring').innerHTML=h;
+})();
+const STEPS=[['h','Human','Lead frames'],['b','Board','Chair routes'],['b','Board','Advisors draft'],['h','Human','Lead validates'],['h','Human','Lead delivers']];
+$('s4steps').innerHTML=STEPS.map((s,i)=>`<div class="step ${s[0]}" id="st${i}" style="left:${160+i*326}px"><span class="w">${s[1]}</span><span class="n">${i+1}</span><span class="t">${s[2]}</span></div>`).join('');
+
+function render(t){
+  $('prog').style.width=(t/D*100)+'%';
+  SC.forEach(([id,a,b])=>{const fin=a===0?1:seg(t,a,a+.5),fout=b===D?1:1-seg(t,b-.4,b);const v=t>=a-0.01&&t<b+0.01?Math.min(fin,fout):0;$(id).style.opacity=v;$(id).style.display=v>0?'block':'none';});
+
+  // 1 Title
+  rise($('s1k'),seg(t,.2,1));
+  $('s1bar').style.width=(out(seg(t,.5,1.3))*140)+'px';
+  rise($('s1t'),seg(t,.6,1.6),60);
+  rise($('s1s'),seg(t,1.4,2.3));
+  [...$('s1chips').children].forEach((c,i)=>{const p=seg(t,2.2+i*.13,2.6+i*.13);c.style.opacity=p;c.style.transform=`scale(${.6+.4*back(p)})`;});
+
+  // 2 Problem
+  rise($('s2a'),seg(t,6.3,7));
+  rise($('s2b'),seg(t,7.6,8.3));
+  [...$('s2grid').children].forEach((c,i)=>{const p=seg(t,8+i*.12,8.4+i*.12);c.style.opacity=p;c.style.transform=`translateY(${(1-out(p))*30}px)`;});
+  rise($('s2c'),seg(t,10,10.7));
+
+  // 3 Ring
+  const lp=seg(t,12.7,13.5);$('lead').style.opacity=lp;$('lead').style.transform=`scale(${.5+.5*back(lp)})`;
+  const rp=seg(t,13.3,14.3);$('chairRing').style.opacity=rp;$('chairLbl').style.opacity=rp;
+  $('chairRing').style.transform=`rotate(${t*6}deg)`;$('chairRing').style.transformOrigin='560px 560px';
+  ADV.forEach((a,i)=>{const p=seg(t,14+i*.22,14.45+i*.22);$('nd'+i).style.opacity=p;$('nd'+i).style.transform=`scale(${.3+.7*back(p)})`;$('nl'+i).style.opacity=p;$('sp'+i).style.opacity=p;
+    const pulse=(t>17.5)?Math.max(0,1-Math.abs(((t-17.5)*3.2)%10-i)):0;$('sp'+i).setAttribute('stroke',pulse>0.05?`rgba(76,221,132,${.25+.75*pulse})`:'rgba(242,240,237,.18)');$('nd'+i).style.boxShadow=pulse>0.05?`0 0 0 ${6*pulse}px rgba(76,221,132,.6)`:'none';});
+  rise($('s3a'),seg(t,14.2,15));rise($('s3b'),seg(t,15.6,16.4));rise($('s3c'),seg(t,17,17.8));
+
+  // 4 Workflow
+  rise($('s4h'),seg(t,20.8,21.6));
+  STEPS.forEach((s,i)=>{const el=$('st'+i);const p=seg(t,21.6+i*.18,22.1+i*.18);const act=seg(t,23+i*1,23.35+i*1)*(1-seg(t,23.9+i*1,24.25+i*1));
+    const done=t>23.9+i*1;el.style.opacity=p;el.style.transform=`translateY(${(1-out(p))*40-act*18}px) scale(${1+act*.05})`;
+    el.style.borderColor=act>.05?'#4CDD84':done?(s[0]==='h'?'#187E3E':'#287079'):'#D6D0C9';el.style.boxShadow=act>.05?`0 30px 50px -24px rgba(0,35,19,${.5*act})`:'none';});
+  rise($('s4cap'),seg(t,27.2,27.9));
+
+  // 5 Playbook
+  rise($('s5h'),seg(t,29.3,30.1));rise($('s5b1'),seg(t,30.6,31.2));rise($('s5b2'),seg(t,31.4,32));rise($('s5b3'),seg(t,32.2,32.8));
+  const pages=[['p1',30.0,1270,190,-7],['p2',30.4,1130,150,5],['p3',30.8,970,120,-2]];
+  pages.forEach(([id,st,x,y,r],k)=>{const p=io(seg(t,st,st+1.1));const drift=(t-29)*(k===2?4:2);$(id).style.opacity=seg(t,st,st+.4);
+    $(id).style.left=(x+ (1-p)*600)+'px';$(id).style.top=(y+ (1-p)*120 - drift)+'px';$(id).style.transform=`rotate(${r*p + (1-p)*12}deg)`;});
+
+  // 6 Site
+  rise($('s6h'),seg(t,38.3,39));
+  const fp=seg(t,38.4,39.3);$('s6f').style.opacity=fp;$('s6f').style.transform=`translateY(${(1-out(fp))*80}px)`;
+  const sw=seg(t,42,42.8);const z1=1+seg(t,38,42.5)*.08;$('s6i1').style.transform=`scale(${z1})`;$('s6i1').style.opacity=1-sw;
+  $('s6i2').style.opacity=sw;$('s6i2').style.transform=`scale(${1+seg(t,42,45.5)*.06}) translateY(${-seg(t,42,45.5)*20}px)`;
+
+  // 7 App
+  rise($('s7h'),seg(t,45.8,46.5));
+  const ap=seg(t,45.9,46.8);$('s7f').style.opacity=ap;$('s7f').style.transform=`translateY(${(1-out(ap))*80}px)`;
+  const zp=io(seg(t,48.5,50.5));const sc=1+zp*.85;$('s7i').style.transform=`translate(${-zp*1020}px,${-zp*60}px) scale(${sc})`;
+  const cp=seg(t,48.8,49.5);$('s7cap').style.opacity=cp;$('s7cap').style.transform=`translate(${(1-out(cp))*-40}px,${110}px)`;
+  ['s7l1','s7l2','s7l3','s7l4'].forEach((id,i)=>rise($(id),seg(t,49.3+i*.75,49.9+i*.75),20));
+
+  // 8 Close
+  rise($('s8a'),seg(t,54.3,55.1));
+  $('s8bar').style.width=(out(seg(t,55.6,56.3))*140)+'px';
+  rise($('s8b'),seg(t,56,56.8));
+  const ccp=seg(t,57,57.6);$('s8c').style.opacity=ccp;$('s8c').style.transform=`scale(${.7+.3*back(ccp)})`;
+}
+window.render=render;
+render(0);
+</script>
+</body></html>
